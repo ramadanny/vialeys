@@ -1,24 +1,27 @@
+<<<<<<< HEAD
+# baileys
+=======
 # <div align='center'>Baileys - Typescript/Javascript WhatsApp Web API</div>
 
 <div align="center">
 
-<img src="https://wy0xihlhnevw1toh.public.blob.vercel-storage.com/images/ueug_ItsukichanBot-kSBgWKyatxf68Vxl3DMdr14VhAv7tR.png" alt="Header Image" width="100%"/>
+<img src="https://files.catbox.moe/n3rtvl.jpg" alt="Header Image" width="100%"/>
 
 <br/>
 
 <!-- Badges -->
 <p>
-  <img src="https://img.shields.io/npm/dw/%40itsukichan%2Fbaileys?label=npm&color=%23CB3837" alt="NPM Downloads"/>
-  <img src="https://img.shields.io/github/v/release/itsukichann/baileys?include_prereleases&sort=semver" alt="Latest Release"/>
-  <img src="https://img.shields.io/github/languages/code-size/itsukichann/baileys" alt="Code Size"/>
-  <img src="https://img.shields.io/github/license/itsukichann/baileys" alt="License"/>
-  <img src="https://img.shields.io/github/stars/itsukichann/baileys" alt="Stars"/>
-  <img src="https://img.shields.io/github/forks/itsukichann/baileys" alt="Forks"/>
+  <img src="https://img.shields.io/npm/dw/%40ramacoded%2Fbaileys?label=npm&color=%23CB3837" alt="NPM Downloads"/>
+  <img src="https://img.shields.io/github/v/release/ramacoded/baileys?include_prereleases&sort=semver" alt="Latest Release"/>
+  <img src="https://img.shields.io/github/languages/code-size/ramacoded/baileys" alt="Code Size"/>
+  <img src="https://img.shields.io/github/license/ramacoded/baileys" alt="License"/>
+  <img src="https://img.shields.io/github/stars/ramacoded/baileys" alt="Stars"/>
+  <img src="https://img.shields.io/github/forks/ramacoded/baileys" alt="Forks"/>
 </p>
 
 <!-- GitHub Stats -->
 <p>
-  <img src="https://github-readme-stats.vercel.app/api?username=itsukichann&show_icons=true&theme=radical" alt="GitHub Stats"/>
+  <img src="https://github-readme-stats.vercel.app/api?username=ramacoded&show_icons=true&theme=radical" alt="GitHub Stats"/>
 </p>
 
 <!-- WhatsApp Links -->
@@ -65,17 +68,17 @@ To run the example script, download or clone the repo and then type the followin
 
 Use the stable version:
 ```
-yarn add @itsukichan/baileys
+yarn add @baleys
 ```
 
 Use the edge version (no guarantee of stability, but latest fixes + features)
 ```
-yarn add github:Itsukichann/Baileys
+yarn add github:ramacoded/Baileys
 ```
 
 Then import your code using:
 ```ts 
-import makeWASocket from '@itsukichan/baileys'
+import makeWASocket from '@baleys'
 ```
 
 # Links
@@ -234,9 +237,9 @@ WhatsApp provides a multi-device API that allows Baileys to be authenticated as 
 > You can customize browser name if you connect with **QR-CODE**, with `Browser` constant, we have some browsers config, **see [here](https://baileys.whiskeysockets.io/types/BrowsersMap.html)**
 
 ```ts
-import makeWASocket from '@itsukichan/baileys'
+import makeWASocket from '@baleys'
 
-const suki = makeWASocket({
+const conn = makeWASocket({
     // can provide additional config here
     browser: Browsers.ubuntu('My App'),
     printQRInTerminal: true
@@ -254,16 +257,16 @@ If the connection is successful, you will see a QR code printed on your terminal
 The phone number can't have `+` or `()` or `-`, only numbers, you must provide country code
 
 ```ts
-import makeWASocket from '@itsukichan/baileys'
+import makeWASocket from '@baleys'
 
-const suki = makeWASocket({
+const conn = makeWASocket({
     // can provide additional config here
     printQRInTerminal: false //need to be false
 })
 
-if (!suki.authState.creds.registered) {
+if (!conn.authState.creds.registered) {
     const number = 'XXXXXXXXXXX'
-    const code = await suki.requestPairingCode(number) // or await suki.requestPairingCode(number, 'CODEOTPS') custom your pairing code
+    const code = await conn.requestPairingCode(number) // or await conn.requestPairingCode(number, 'CODEOTPS') custom your pairing code
     console.log(code)
 }
 ```
@@ -275,7 +278,7 @@ if (!suki.authState.creds.registered) {
     - If you'd like to emulate a desktop connection (and receive more message history), this browser setting to your Socket config:
 
 ```ts
-const suki = makeWASocket({
+const conn = makeWASocket({
     ...otherOpts,
     // can use Windows, Ubuntu here too
     browser: Browsers.macOS('Desktop'),
@@ -291,17 +294,17 @@ const suki = makeWASocket({
     ```ts
     const groupCache = new NodeCache({stdTTL: 5 * 60, useClones: false})
 
-    const suki = makeWASocket({
+    const conn = makeWASocket({
         cachedGroupMetadata: async (jid) => groupCache.get(jid)
     })
 
-    suki.ev.on('groups.update', async ([event]) => {
-        const metadata = await suki.groupMetadata(event.id)
+    conn.ev.on('groups.update', async ([event]) => {
+        const metadata = await conn.groupMetadata(event.id)
         groupCache.set(event.id, metadata)
     })
 
-    suki.ev.on('group-participants.update', async (event) => {
-        const metadata = await suki.groupMetadata(event.id)
+    conn.ev.on('group-participants.update', async (event) => {
+        const metadata = await conn.groupMetadata(event.id)
         groupCache.set(event.id, metadata)
     })
     ```
@@ -309,7 +312,7 @@ const suki = makeWASocket({
 ### Improve Retry System & Decrypt Poll Votes
 - If you want to improve sending message, retrying when error occurs and decrypt poll votes, you need to have a store and set `getMessage` config in socket like this:
     ```ts
-    const suki = makeWASocket({
+    const conn = makeWASocket({
         getMessage: async (key) => await getMessageFromStore(key)
     })
     ```
@@ -317,7 +320,7 @@ const suki = makeWASocket({
 ### Receive Notifications in Whatsapp App
 - If you want to receive notifications in whatsapp app, set `markOnlineOnConnect` to `false`
     ```ts
-    const suki = makeWASocket({
+    const conn = makeWASocket({
         markOnlineOnConnect: false
     })
     ```
@@ -327,16 +330,16 @@ You obviously don't want to keep scanning the QR code every time you want to con
 
 So, you can load the credentials to log back in:
 ```ts
-import makeWASocket, { useMultiFileAuthState } from '@itsukichan/baileys'
+import makeWASocket, { useMultiFileAuthState } from '@baleys'
 
 const { state, saveCreds } = await useMultiFileAuthState('auth_info_baileys')
 
 // will use the given state to connect
 // so if valid credentials are available -- it'll connect without QR
-const suki = makeWASocket({ auth: state })
+const conn = makeWASocket({ auth: state })
 
 // this will be called as soon as the credentials are updated
-suki.ev.on('creds.update', saveCreds)
+conn.ev.on('creds.update', saveCreds)
 ```
 
 > [!IMPORTANT]
@@ -355,8 +358,8 @@ They're all nicely typed up, so you shouldn't have any issues with an Intellisen
 
 You can listen to these events like this:
 ```ts
-const suki = makeWASocket()
-suki.ev.on('messages.upsert', ({ messages }) => {
+const conn = makeWASocket()
+conn.ev.on('messages.upsert', ({ messages }) => {
     console.log('got messages', messages)
 })
 ```
@@ -367,17 +370,17 @@ suki.ev.on('messages.upsert', ({ messages }) => {
 > This example includes basic auth storage too
 
 ```ts
-import makeWASocket, { DisconnectReason, useMultiFileAuthState } from '@itsukichan/baileys'
+import makeWASocket, { DisconnectReason, useMultiFileAuthState } from '@baleys'
 import { Boom } from '@hapi/boom'
 
 async function connectToWhatsApp () {
     const { state, saveCreds } = await useMultiFileAuthState('./auth_info_baileys')
-    const suki = makeWASocket({
+    const conn = makeWASocket({
         // can provide additional config here
         auth: state,
         printQRInTerminal: true
     })
-    suki.ev.on('connection.update', (update) => {
+    conn.ev.on('connection.update', (update) => {
         const { connection, lastDisconnect } = update
         if(connection === 'close') {
             const shouldReconnect = (lastDisconnect.error as Boom)?.output?.statusCode !== DisconnectReason.loggedOut
@@ -390,17 +393,17 @@ async function connectToWhatsApp () {
             console.log('opened connection')
         }
     })
-    suki.ev.on('messages.upsert', event => {
+    conn.ev.on('messages.upsert', event => {
         for (const m of event.messages) {
             console.log(JSON.stringify(m, undefined, 2))
 
             console.log('replying to', m.key.remoteJid)
-            await suki.sendMessage(m.key.remoteJid!, { text: 'Hello Word' })
+            await conn.sendMessage(m.key.remoteJid!, { text: 'Hello Word' })
         }
     })
 
     // to storage creds (session info) when it updates
-    suki.ev.on('creds.update', saveCreds)
+    conn.ev.on('creds.update', saveCreds)
 }
 // run in main file
 connectToWhatsApp()
@@ -408,16 +411,16 @@ connectToWhatsApp()
 
 ### For example if you use useSingleFileAuthState and useMongoFileAuthState
 ```ts
-import makeWASocket, { useSingleFileAuthState, useMongoFileAuthState } from '@itsukichan/baileys'
+import makeWASocket, { useSingleFileAuthState, useMongoFileAuthState } from '@baleys'
 
 // Single Auth
 const { state, saveState } = await useSingleFileAuthState('./auth_info_baileys.json') 
-const suki = makeWASocket({
+const conn = makeWASocket({
         auth: state,
         printQRInTerminal: true
     })
     
-suki.ev.on('creds.update', saveState)
+conn.ev.on('creds.update', saveState)
 
 // Mongo Auth
 import { MongoClient } from "mongodb"
@@ -433,18 +436,18 @@ const connectAuth = async() => {
     })
 }
   await client.connect()
-  const collection = client.db("@itsukichann").collection("sessions")
+  const collection = client.db("@ramacoded").collection("sessions")
   return collection
 }
 
 const Authentication = await connectAuth()
 const { state, saveCreds } = await useMongoFileAuthState(Authentication)
-const suki = makeWASocket({
+const conn = makeWASocket({
         auth: state,
         printQRInTerminal: true
     })
     
-suki.ev.on('creds.update', saveCreds)
+conn.ev.on('creds.update', saveCreds)
 ```
 
 > [!IMPORTANT]
@@ -455,9 +458,9 @@ suki.ev.on('creds.update', saveCreds)
 - By default poll votes are encrypted and handled in `messages.update`
 ```ts
 import pino from "pino"
-import { makeInMemoryStore, getAggregateVotesInPollMessage } from '@itsukichan/baileys'
+import { makeInMemoryStore, getAggregateVotesInPollMessage } from '@baleys'
 
-const logger = pino({ timestamp: () => `,"time":"${new Date().toJSON()}"` }).child({ class: "@Itsukichann" })
+const logger = pino({ timestamp: () => `,"time":"${new Date().toJSON()}"` }).child({ class: "@ramacoded" })
 logger.level = "fatal"
 const store = makeInMemoryStore({ logger })
 
@@ -467,11 +470,11 @@ async function getMessage(key){
         return msg?.message
     }
     return {
-        conversation: "Itsukii Kawaiii"
+        conversation: "ramacodedi"
     }
 } 
 
-suki.ev.on("messages.update", async (chatUpdate) => {
+conn.ev.on("messages.update", async (chatUpdate) => {
     for(const { key, update } of chatUpdate) {
          if(update.pollUpdates && key.fromMe) {
            const pollCreation = await getMessage(key)
@@ -504,7 +507,7 @@ suki.ev.on("messages.update", async (chatUpdate) => {
 It can be used as follows:
 
 ```ts
-import makeWASocket, { makeInMemoryStore } from '@itsukichan/baileys'
+import makeWASocket, { makeInMemoryStore } from '@baleys'
 // the store maintains the data of the WA connection in memory
 // can be written out to a file & read from it
 const store = makeInMemoryStore({ })
@@ -515,18 +518,18 @@ setInterval(() => {
     store.writeToFile('./baileys_store.json')
 }, 10_000)
 
-const suki = makeWASocket({ })
+const conn = makeWASocket({ })
 // will listen from this socket
 // the store can listen from a new socket once the current socket outlives its lifetime
-store.bind(suki.ev)
+store.bind(conn.ev)
 
-suki.ev.on('chats.upsert', () => {
+conn.ev.on('chats.upsert', () => {
     // can use 'store.chats' however you want, even after the socket dies out
     // 'chats' => a KeyedDB instance
     console.log('got chats', store.chats.all())
 })
 
-suki.ev.on('contacts.upsert', () => {
+conn.ev.on('contacts.upsert', () => {
     console.log('got contacts', Object.values(store.contacts))
 })
 
@@ -561,25 +564,25 @@ The store also provides some simple functions such as `loadMessages` that utiliz
     const content: AnyMessageContent
     const options: MiscMessageGenerationOptions
 
-    suki.sendMessage(jid, content, options)
+    conn.sendMessage(jid, content, options)
     ```
 
 ### Non-Media Messages
 
 #### Text Message
 ```ts
-await suki.sendMessage(jid, { text: 'hello word' })
+await conn.sendMessage(jid, { text: 'hello word' })
 ```
 
 #### Quote Message (works with all types)
 ```ts
-await suki.sendMessage(jid, { text: 'hello word' }, { quoted: message })
+await conn.sendMessage(jid, { text: 'hello word' }, { quoted: message })
 ```
 
 #### Mention User (works with most types)
 - @number is to mention in text, it's optional
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         text: '@12345678901',
@@ -592,12 +595,12 @@ await suki.sendMessage(
 - You need to have message object, can be retrieved from [store](#implementing-a-data-store) or use a [message](https://baileys.whiskeysockets.io/types/WAMessage.html) object
 ```ts
 const msg = getMessageFromStore() // implement this on your end
-await suki.sendMessage(jid, { forward: msg, force: true or number }) // WA forward the message!
+await conn.sendMessage(jid, { forward: msg, force: true or number }) // WA forward the message!
 ```
 
 #### Location Message
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid, 
     {
         location: {
@@ -610,7 +613,7 @@ await suki.sendMessage(
 
 #### Live Location Message
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid, 
     {
         location: {
@@ -630,11 +633,11 @@ const vcard = 'BEGIN:VCARD\n' // metadata of the contact card
             + 'TELtype=CELLtype=VOICEwaid=911234567890:+91 12345 67890\n' // WhatsApp ID + phone number
             + 'END:VCARD'
 
-await suki.sendMessage(
+await conn.sendMessage(
     id,
     { 
         contacts: { 
-            displayName: 'Itsukichann', 
+            displayName: 'ramacoded', 
             contacts: [{ vcard }] 
         }
     }
@@ -644,7 +647,7 @@ await suki.sendMessage(
 #### Reaction Message
 - You need to pass the key of message, you can retrieve from [store](#implementing-a-data-store) or use a [key](https://baileys.whiskeysockets.io/types/WAMessageKey.html) object
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         react: {
@@ -667,7 +670,7 @@ await suki.sendMessage(
 | 30d    | 2.592.000     |
 
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         pin: {
@@ -681,7 +684,7 @@ await suki.sendMessage(
 
 ### Keep Message
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         keep: {
@@ -694,7 +697,7 @@ await suki.sendMessage(
 
 #### Poll Message
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         poll: {
@@ -709,7 +712,7 @@ await suki.sendMessage(
 
 #### Poll Result Message
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid, 
     {
         pollResult: {
@@ -731,7 +734,7 @@ await suki.sendMessage(
 
 ### Call Message
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         call: {
@@ -744,7 +747,7 @@ await suki.sendMessage(
 
 ### Event Message
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         event: {
@@ -766,7 +769,7 @@ await suki.sendMessage(
 
 ### Order Message
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         order: {
@@ -788,7 +791,7 @@ await suki.sendMessage(
 
 ### Product Message
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         product: {
@@ -814,7 +817,7 @@ await suki.sendMessage(
 
 ### Payment Message
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         payment: {
@@ -836,7 +839,7 @@ await suki.sendMessage(
 
 #### Payment Invite Message
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     id, 
     { 
         paymentInvite: {
@@ -849,7 +852,7 @@ await suki.sendMessage(
 
 ### Admin Invite Message
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         adminInvite: {
@@ -865,7 +868,7 @@ await suki.sendMessage(
 
 ### Group Invite Message
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         groupInvite: {
@@ -883,12 +886,12 @@ await suki.sendMessage(
 ### Sticker Pack Message
 ```ts 
 // I don't know why the sticker doesn't appear
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         stickerPack: {
             name: 'Hiii', 
-            publisher: 'By Itsukichann', 
+            publisher: 'By ramacoded', 
             description: 'Hello', 
             cover: Buffer, // Image buffer
             stickers: [{
@@ -912,7 +915,7 @@ await suki.sendMessage(
 
 ### Share Phone Number Message
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         sharePhoneNumber: {
@@ -923,7 +926,7 @@ await suki.sendMessage(
 
 ### Request Phone Number Message
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         requestPhoneNumber: {
@@ -935,7 +938,7 @@ await suki.sendMessage(
 ### Buttons Reply Message
 ```ts
 // List
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         buttonReply: {
@@ -947,7 +950,7 @@ await suki.sendMessage(
     }
 )
 // Plain
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         buttonReply: {
@@ -959,7 +962,7 @@ await suki.sendMessage(
 )
 
 // Template
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         buttonReply: {
@@ -972,7 +975,7 @@ await suki.sendMessage(
 )
 
 // Interactive
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         buttonReply: {
@@ -990,7 +993,7 @@ await suki.sendMessage(
 
 ### Buttons Message
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         text: 'This is a button message!',  // image: buffer or // image: { url: url } If you want to use images
@@ -1021,7 +1024,7 @@ await suki.sendMessage(
 ### Buttons List Message
 ```ts
 // Just working in a private chat
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         text: 'This is a list!', 
@@ -1060,7 +1063,7 @@ await suki.sendMessage(
 ### Buttons Product List Message
 ```ts
 // Just working in a private chat
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         text: 'This is a list!', 
@@ -1086,7 +1089,7 @@ await suki.sendMessage(
 
 ### Buttons Cards Message
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         text: 'Body Message',
@@ -1146,7 +1149,7 @@ await suki.sendMessage(
 ### Buttons Template Message
 ```ts
 // This no longer works
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
        text: 'This is a template message!', 
@@ -1178,7 +1181,7 @@ await suki.sendMessage(
 
 ### Buttons Interactive Message
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         text: 'This is an Interactive message!',
@@ -1281,7 +1284,7 @@ await suki.sendMessage(
                     flow_message_version: '3', 
                     flow_token: '1:1307913409923914:293680f87029f5a13d1ec5e35e718af3',
                     flow_id: '1307913409923914',
-                    flow_cta: 'Itsukichann kawaii >\\<', 
+                    flow_cta: 'ramacoded', 
                     flow_action: 'navigate', 
                     flow_action_payload: {
                     	screen: 'QUESTION_ONE',
@@ -1330,7 +1333,7 @@ await suki.sendMessage(
 )
 
 // If you want to use an image
-await suki.sendMessage(
+await conn.sendMessage(
     jid, 
     {
        image: { 
@@ -1354,7 +1357,7 @@ await suki.sendMessage(
 )
 
 // If you want to use an video
-await suki.sendMessage(
+await conn.sendMessage(
     jid, 
     {
         video: { 
@@ -1378,14 +1381,14 @@ await suki.sendMessage(
 )
 
 // If you want to use an document
-await suki.sendMessage(
+await conn.sendMessage(
     jid, 
     {
         document: { 
           url: 'https://example.com/jdbenkksjs.jpg' 
        }, 
        mimetype: 'image/jpeg', 
-       jpegThumbnail: await suki.resize('https://example.com/jdbenkksjs.jpg', 320, 320), 
+       jpegThumbnail: await conn.resize('https://example.com/jdbenkksjs.jpg', 320, 320), 
        caption: 'Body',
        title: 'Title',
        subtitle: 'Subtitle', 
@@ -1404,7 +1407,7 @@ await suki.sendMessage(
 )
 
 // If you want to use an location
-await suki.sendMessage(
+await conn.sendMessage(
     jid, 
     {
         location: { 
@@ -1430,7 +1433,7 @@ await suki.sendMessage(
 )
 
 // if you want to use an product
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         product: {
@@ -1442,7 +1445,7 @@ await suki.sendMessage(
             description: 'Description',
             currencyCode: 'IDR',
             priceAmount1000: '283xxx',
-            retailerId: 'Itsukichann',
+            retailerId: 'ramacoded',
             url: 'https://example.com',
             productImageCount: 1
         },
@@ -1467,7 +1470,7 @@ await suki.sendMessage(
 
 ### Buttons Interactive Message PIX
 ```ts
-await suki.sendMessage( 
+await conn.sendMessage( 
     jid, 
     { 
        text: '', // This string is required. Even it's empty. 
@@ -1478,8 +1481,8 @@ await suki.sendMessage(
                 payment_settings: [{ 
                    type: "pix_static_code", 
                    pix_static_code:  { 
-                      merchant_name: 'itsukichann kawaii >\\\\\\<', 
-                      key: 'example@itsukichan.com', 
+                      merchant_name: 'ramacoded', 
+                      key: 'example@ramacoded.com', 
                       key_type: 'EMAIL' // PHONE || EMAIL || CPF || EVP 
                    } 
                }] 
@@ -1492,7 +1495,7 @@ await suki.sendMessage(
 
 ### Buttons Interactive Message PAY
 ```ts
-await suki.sendMessage( 
+await conn.sendMessage( 
     jid, 
     { 
        text: '', // This string is required. Even it's empty. 
@@ -1522,7 +1525,7 @@ await suki.sendMessage(
                     order_type: 'PAYMENT_REQUEST', 
                     items: [{
                         retailer_id: 'your_retailer_id', 
-                        name: 'Itsukichann Kawaii >\\\<', 
+                        name: 'ramacoded', 
                         amount: {
                             value: '999999999', 
                             offset: '100'
@@ -1530,7 +1533,7 @@ await suki.sendMessage(
                         quantity: '1', 
                     }]
                 }, 
-                additional_note: 'Itsukichann Kawaii >\\\<', 
+                additional_note: 'ramacoded', 
                 native_payment_methods: [], 
                 share_payment_status: false
             }) 
@@ -1550,7 +1553,7 @@ const jidat = [
     '62xxxxxxx@s.whatsapp.net'
 ]
 // Text
-await suki.sendStatusMentions(
+await conn.sendStatusMentions(
     {
       text: 'Hello Everyone :3', 
       font: 2, // optional
@@ -1561,7 +1564,7 @@ await suki.sendStatusMentions(
 )
 
 // Image
-await suki.sendStatusMentions(
+await conn.sendStatusMentions(
     {
       Image: { url: 'https://example.com/ruriooe.jpg' }, or image buffer
       caption: 'Hello Everyone :3' // optional
@@ -1570,7 +1573,7 @@ await suki.sendStatusMentions(
 )
 
 // Video
-await suki.sendStatusMentions(
+await conn.sendStatusMentions(
     {
       video: { url: 'https://example.com/ruriooe.mp4' }, or video buffer
       caption: 'Hello Everyone :3' // optional
@@ -1579,7 +1582,7 @@ await suki.sendStatusMentions(
 )
 
 // Audio
-await suki.sendStatusMentions(
+await conn.sendStatusMentions(
     {
       audio: { url: 'https://example.com/ruriooe.mp3' }, or audio buffer
       backgroundColor: '#000000', // optional 
@@ -1592,7 +1595,7 @@ await suki.sendStatusMentions(
 
 ### Send Album Message
 ```ts
-await suki.sendAlbumMessage(
+await conn.sendAlbumMessage(
     jid,
     [
        {
@@ -1620,7 +1623,7 @@ await suki.sendAlbumMessage(
 ```
 ### Shop Message
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid, 
     {      
        text: 'Body',
@@ -1636,7 +1639,7 @@ await suki.sendMessage(
 )
 
 // Image
-await suki.sendMessage(
+await conn.sendMessage(
     jid, 
     { 
        image: {
@@ -1656,7 +1659,7 @@ await suki.sendMessage(
 )
 
 // Video
-await suki.sendMessage(
+await conn.sendMessage(
     jid, 
     { 
        video: {
@@ -1676,14 +1679,14 @@ await suki.sendMessage(
 )
 
 // Document
-await suki.sendMessage(
+await conn.sendMessage(
     jid, 
     {
         document: { 
           url: 'https://example.com/jdbenkksjs.jpg' 
        }, 
        mimetype: 'image/jpeg', 
-       jpegThumbnail: await suki.resize('https://example.com/jdbenkksjs.jpg', 320, 320), 
+       jpegThumbnail: await conn.resize('https://example.com/jdbenkksjs.jpg', 320, 320), 
        caption: 'Body',
        title: 'Title',
        subtitle: 'Subtitle', 
@@ -1698,7 +1701,7 @@ await suki.sendMessage(
 )
 
 // Location
-await suki.sendMessage(
+await conn.sendMessage(
     jid, 
     { 
        location: {
@@ -1720,7 +1723,7 @@ await suki.sendMessage(
 )
 
 // Product
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         product: {
@@ -1732,7 +1735,7 @@ await suki.sendMessage(
             description: 'Description',
             currencyCode: 'IDR',
             priceAmount1000: '283xxx',
-            retailerId: 'Itsukichann',
+            retailerId: 'ramacoded',
             url: 'https://example.com',
             productImageCount: 1
         },
@@ -1752,7 +1755,7 @@ await suki.sendMessage(
 ```
 ### Collection Message
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid, 
     {      
        text: 'Body',
@@ -1769,7 +1772,7 @@ await suki.sendMessage(
 )
 
 // Image
-await suki.sendMessage(
+await conn.sendMessage(
     jid, 
     { 
        image: {
@@ -1790,7 +1793,7 @@ await suki.sendMessage(
 )
 
 // Video
-await suki.sendMessage(
+await conn.sendMessage(
     jid, 
     { 
        video: {
@@ -1811,14 +1814,14 @@ await suki.sendMessage(
 )
 
 // Document
-await suki.sendMessage(
+await conn.sendMessage(
     jid, 
     {
         document: { 
           url: 'https://example.com/jdbenkksjs.jpg' 
        }, 
        mimetype: 'image/jpeg', 
-       jpegThumbnail: await suki.resize('https://example.com/jdbenkksjs.jpg', 320, 320), 
+       jpegThumbnail: await conn.resize('https://example.com/jdbenkksjs.jpg', 320, 320), 
        caption: 'Body',
        title: 'Title',
        subtitle: 'Subtitle', 
@@ -1834,7 +1837,7 @@ await suki.sendMessage(
 )
 
 // Location
-await suki.sendMessage(
+await conn.sendMessage(
     jid, 
     { 
        location: {
@@ -1857,7 +1860,7 @@ await suki.sendMessage(
 )
 
 // Product
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         product: {
@@ -1869,7 +1872,7 @@ await suki.sendMessage(
             description: 'Description',
             currencyCode: 'IDR',
             priceAmount1000: '283xxx',
-            retailerId: 'Itsukichann',
+            retailerId: 'ramacoded',
             url: 'https://example.com',
             productImageCount: 1
         },
@@ -1891,7 +1894,7 @@ await suki.sendMessage(
 
 ### Delete AI Icon Feature 
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         text: 'Hi'
@@ -1901,7 +1904,7 @@ await suki.sendMessage(
 )
 
 // If using relay
-await suki.relayMessage(
+await conn.relayMessage(
     jid,
     {
         extendedTextMessage: {
@@ -1920,7 +1923,7 @@ await suki.relayMessage(
 3. To enable this function's usage, add `link-preview-js` as a dependency to your project with `yarn add link-preview-js`
 4. Send a link:
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         text: 'Hi, this was sent using https://github.com/whiskeysockets/baileys'
@@ -1943,7 +1946,7 @@ Sending media (video, stickers, images) is easier & more efficient than ever.
 #### Gif Message
 - Whatsapp doesn't support `.gif` files, that's why we send gifs as common `.mp4` video with `gifPlayback` flag
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid, 
     { 
         video: fs.readFileSync('Media/ma_gif.mp4'),
@@ -1955,7 +1958,7 @@ await suki.sendMessage(
 
 #### Video Message
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     id, 
     { 
         video: {
@@ -1968,7 +1971,7 @@ await suki.sendMessage(
 
 #### Video Ptv Message
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     id, 
     { 
         video: {
@@ -1992,7 +1995,7 @@ await suki.sendMessage(
     ffmpeg -i input.mp4 -avoid_negative_ts make_zero -ac 1 output.ogg
     ```
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid, 
     {
         audio: {
@@ -2005,7 +2008,7 @@ await suki.sendMessage(
 
 #### Image Message
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     id, 
     { 
         image: {
@@ -2021,7 +2024,7 @@ await suki.sendMessage(
 - You can send all messages above as `viewOnce`, you only need to pass `viewOnce: true` in content object
 
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     id, 
     { 
         image: {
@@ -2038,8 +2041,8 @@ await suki.sendMessage(
 ### Deleting Messages (for everyone)
 
 ```ts
-const msg = await suki.sendMessage(jid, { text: 'hello word' })
-await suki.sendMessage(jid, { delete: msg.key })
+const msg = await conn.sendMessage(jid, { text: 'hello word' })
+await conn.sendMessage(jid, { delete: msg.key })
 ```
 
 **Note:** deleting for oneself is supported via `chatModify`, see in [this section](#modifying-chats)
@@ -2048,7 +2051,7 @@ await suki.sendMessage(jid, { delete: msg.key })
 
 - You can pass all editable contents here
 ```ts
-await suki.sendMessage(jid, {
+await conn.sendMessage(jid, {
       text: 'updated text goes here',
       edit: response.key,
     })
@@ -2065,9 +2068,9 @@ await suki.sendMessage(jid, {
 If you want to save the media you received
 ```ts
 import { createWriteStream } from 'fs'
-import { downloadMediaMessage, getContentType } from '@itsukichan/baileys'
+import { downloadMediaMessage, getContentType } from '@baleys'
 
-suki.ev.on('messages.upsert', async ({ [m] }) => {
+conn.ev.on('messages.upsert', async ({ [m] }) => {
     if (!m.message) return // if there is no text or media message
     const messageType = getContentType(m) // get what type of message it is (text, image, video...)
 
@@ -2082,7 +2085,7 @@ suki.ev.on('messages.upsert', async ({ [m] }) => {
                 logger,
                 // pass this so that baileys can request a reupload of media
                 // that has been deleted
-                reuploadRequest: suki.updateMediaMessage
+                reuploadRequest: conn.updateMediaMessage
             }
         )
         // save to file
@@ -2096,7 +2099,7 @@ suki.ev.on('messages.upsert', async ({ [m] }) => {
 
 - WhatsApp automatically removes old media from their servers. For the device to access said media -- a re-upload is required by another device that has it. This can be accomplished using: 
 ```ts
-await suki.updateMediaMessage(msg)
+await conn.updateMediaMessage(msg)
 ```
 
 ## Reject Call
@@ -2104,7 +2107,7 @@ await suki.updateMediaMessage(msg)
 - You can obtain `callId` and `callFrom` from `call` event
 
 ```ts
-await suki.rejectCall(callId, callFrom)
+await conn.rejectCall(callId, callFrom)
 ```
 
 ## Send States in Chat
@@ -2117,7 +2120,7 @@ This means you have to keep track of unread messages.
 ```ts
 const key: WAMessageKey
 // can pass multiple keys to read multiple messages as well
-await suki.readMessages([key])
+await conn.readMessages([key])
 ```
 
 The message ID is the unique identifier of the message that you are marking as read. 
@@ -2130,11 +2133,11 @@ On a `WAMessage`, the `messageID` can be accessed using ```messageID = message.k
 - This lets the person/group with `jid` know whether you're online, offline, typing etc. 
 
 ```ts
-await suki.sendPresenceUpdate('available', jid) 
+await conn.sendPresenceUpdate('available', jid) 
 ```
 
 > [!NOTE]
-> If a desktop client is active, WA doesn't send push notifications to the device. If you would like to receive said notifications -- mark your Baileys client offline using `suki.sendPresenceUpdate('unavailable')`
+> If a desktop client is active, WA doesn't send push notifications to the device. If you would like to receive said notifications -- mark your Baileys client offline using `conn.sendPresenceUpdate('unavailable')`
 
 ## Modifying Chats
 
@@ -2146,7 +2149,7 @@ WA uses an encrypted form of communication to send chat/app updates. This has be
 ### Archive a Chat
 ```ts
 const lastMsgInChat = await getLastMessageInChat(jid) // implement this on your end
-await suki.chatModify({ archive: true, lastMessages: [lastMsgInChat] }, jid)
+await conn.chatModify({ archive: true, lastMessages: [lastMsgInChat] }, jid)
 ```
 ### Mute/Unmute a Chat
 
@@ -2160,20 +2163,20 @@ await suki.chatModify({ archive: true, lastMessages: [lastMsgInChat] }, jid)
 
 ```ts
 // mute for 8 hours
-await suki.chatModify({ mute: 8 * 60 * 60 * 1000 }, jid)
+await conn.chatModify({ mute: 8 * 60 * 60 * 1000 }, jid)
 // unmute
-await suki.chatModify({ mute: null }, jid)
+await conn.chatModify({ mute: null }, jid)
 ```
 ### Mark a Chat Read/Unread
 ```ts
 const lastMsgInChat = await getLastMessageInChat(jid) // implement this on your end
 // mark it unread
-await suki.chatModify({ markRead: false, lastMessages: [lastMsgInChat] }, jid)
+await conn.chatModify({ markRead: false, lastMessages: [lastMsgInChat] }, jid)
 ```
 
 ### Delete a Message for Me
 ```ts
-await suki.chatModify(
+await conn.chatModify(
     {
         clear: {
             messages: [
@@ -2192,7 +2195,7 @@ await suki.chatModify(
 ### Delete a Chat
 ```ts
 const lastMsgInChat = await getLastMessageInChat(jid) // implement this on your end
-await suki.chatModify({
+await conn.chatModify({
         delete: true,
         lastMessages: [
             {
@@ -2206,7 +2209,7 @@ await suki.chatModify({
 ```
 ### Pin/Unpin a Chat
 ```ts
-await suki.chatModify({
+await conn.chatModify({
         pin: true // or `false` to unpin
     },
     jid
@@ -2214,7 +2217,7 @@ await suki.chatModify({
 ```
 ### Star/Unstar a Message
 ```ts
-await suki.chatModify({
+await conn.chatModify({
         star: {
             messages: [
                 {
@@ -2244,17 +2247,17 @@ await suki.chatModify({
 
 ```ts
 // turn on disappearing messages
-await suki.sendMessage(
+await conn.sendMessage(
     jid, 
     // this is 1 week in seconds -- how long you want messages to appear for
     { disappearingMessagesInChat: WA_DEFAULT_EPHEMERAL }
 )
 
 // will send as a disappearing message
-await suki.sendMessage(jid, { text: 'hello' }, { ephemeralExpiration: WA_DEFAULT_EPHEMERAL })
+await conn.sendMessage(jid, { text: 'hello' }, { ephemeralExpiration: WA_DEFAULT_EPHEMERAL })
 
 // turn off disappearing messages
-await suki.sendMessage(
+await conn.sendMessage(
     jid, 
     { disappearingMessagesInChat: false }
 )
@@ -2262,14 +2265,14 @@ await suki.sendMessage(
 
 ### Clear Messages
 ```ts
-await suki.clearMessage(jid, key, timestamps) 
+await conn.clearMessage(jid, key, timestamps) 
 ```
 
 ## User Querys
 
 ### Check If ID Exists in Whatsapp
 ```ts
-const [result] = await suki.onWhatsApp(jid)
+const [result] = await conn.onWhatsApp(jid)
 if (result.exists) console.log (`${jid} exists on WhatsApp, as jid: ${result.jid}`)
 ```
 
@@ -2278,7 +2281,7 @@ if (result.exists) console.log (`${jid} exists on WhatsApp, as jid: ${result.jid
 - You need to have oldest message in chat
 ```ts
 const msg = await getOldestMessageInChat(jid)
-await suki.fetchMessageHistory(
+await conn.fetchMessageHistory(
     50, //quantity (max: 50 per query)
     msg.key,
     msg.messageTimestamp
@@ -2288,7 +2291,7 @@ await suki.fetchMessageHistory(
 
 ### Fetch Status
 ```ts
-const status = await suki.fetchStatus(jid)
+const status = await conn.fetchStatus(jid)
 console.log('status: ' + status)
 ```
 
@@ -2296,34 +2299,34 @@ console.log('status: ' + status)
 - To get the display picture of some person, group and channel
 ```ts
 // for low res picture
-const ppUrl = await suki.profilePictureUrl(jid)
+const ppUrl = await conn.profilePictureUrl(jid)
 console.log(ppUrl)
 ```
 
 ### Fetch Bussines Profile (such as description or category)
 ```ts
-const profile = await suki.getBusinessProfile(jid)
+const profile = await conn.getBusinessProfile(jid)
 console.log('business description: ' + profile.description + ', category: ' + profile.category)
 ```
 
 ### Fetch Someone's Presence (if they're typing or online)
 ```ts
 // the presence update is fetched and called here
-suki.ev.on('presence.update', console.log)
+conn.ev.on('presence.update', console.log)
 
 // request updates for a chat
-await suki.presenceSubscribe(jid) 
+await conn.presenceSubscribe(jid) 
 ```
 
 ## Change Profile
 
 ### Change Profile Status
 ```ts
-await suki.updateProfileStatus('Hello World!')
+await conn.updateProfileStatus('Hello World!')
 ```
 ### Change Profile Name
 ```ts
-await suki.updateProfileName('My name')
+await conn.updateProfileName('My name')
 ```
 ### Change Display Picture (groups too)
 - To change your display picture or a group's
@@ -2332,11 +2335,11 @@ await suki.updateProfileName('My name')
 > Like media messages, you can pass `{ stream: Stream }` or `{ url: Url }` or `Buffer` directly, you can see more [here](https://baileys.whiskeysockets.io/types/WAMediaUpload.html)
 
 ```ts
-await suki.updateProfilePicture(jid, { url: './new-profile-picture.jpeg' })
+await conn.updateProfilePicture(jid, { url: './new-profile-picture.jpeg' })
 ```
 ### Remove display picture (groups too)
 ```ts
-await suki.removeProfilePicture(jid)
+await conn.removeProfilePicture(jid)
 ```
 
 ## Groups
@@ -2346,14 +2349,14 @@ await suki.removeProfilePicture(jid)
 ### Create a Group
 ```ts
 // title & participants
-const group = await suki.groupCreate('My Fab Group', ['1234@s.whatsapp.net', '4564@s.whatsapp.net'])
+const group = await conn.groupCreate('My Fab Group', ['1234@s.whatsapp.net', '4564@s.whatsapp.net'])
 console.log('created group with id: ' + group.gid)
-await suki.sendMessage(group.id, { text: 'hello there' }) // say hello to everyone on the group
+await conn.sendMessage(group.id, { text: 'hello there' }) // say hello to everyone on the group
 ```
 ### Add/Remove or Demote/Promote
 ```ts
 // id & people to add to the group (will throw error if it fails)
-await suki.groupParticipantsUpdate(
+await conn.groupParticipantsUpdate(
     jid, 
     ['abcd@s.whatsapp.net', 'efgh@s.whatsapp.net'],
     'add' // replace this parameter with 'remove' or 'demote' or 'promote'
@@ -2361,68 +2364,68 @@ await suki.groupParticipantsUpdate(
 ```
 ### Change Subject (name)
 ```ts
-await suki.groupUpdateSubject(jid, 'New Subject!')
+await conn.groupUpdateSubject(jid, 'New Subject!')
 ```
 ### Change Description
 ```ts
-await suki.groupUpdateDescription(jid, 'New Description!')
+await conn.groupUpdateDescription(jid, 'New Description!')
 ```
 ### Change Settings
 ```ts
 // only allow admins to send messages
-await suki.groupSettingUpdate(jid, 'announcement')
+await conn.groupSettingUpdate(jid, 'announcement')
 // allow everyone to send messages
-await suki.groupSettingUpdate(jid, 'not_announcement')
+await conn.groupSettingUpdate(jid, 'not_announcement')
 // allow everyone to modify the group's settings -- like display picture etc.
-await suki.groupSettingUpdate(jid, 'unlocked')
+await conn.groupSettingUpdate(jid, 'unlocked')
 // only allow admins to modify the group's settings
-await suki.groupSettingUpdate(jid, 'locked')
+await conn.groupSettingUpdate(jid, 'locked')
 ```
 ### Leave a Group
 ```ts
 // will throw error if it fails
-await suki.groupLeave(jid)
+await conn.groupLeave(jid)
 ```
 ### Get Invite Code
 - To create link with code use `'https://chat.whatsapp.com/' + code`
 ```ts
-const code = await suki.groupInviteCode(jid)
+const code = await conn.groupInviteCode(jid)
 console.log('group code: ' + code)
 ```
 ### Revoke Invite Code
 ```ts
-const code = await suki.groupRevokeInvite(jid)
+const code = await conn.groupRevokeInvite(jid)
 console.log('New group code: ' + code)
 ```
 ### Join Using Invitation Code
 - Code can't have `https://chat.whatsapp.com/`, only code
 ```ts
-const response = await suki.groupAcceptInvite(code)
+const response = await conn.groupAcceptInvite(code)
 console.log('joined to: ' + response)
 ```
 ### Get Group Info by Invite Code
 ```ts
-const response = await suki.groupGetInviteInfo(code)
+const response = await conn.groupGetInviteInfo(code)
 console.log('group information: ' + response)
 ```
 ### Query Metadata (participants, name, description...)
 ```ts
-const metadata = await suki.groupMetadata(jid) 
+const metadata = await conn.groupMetadata(jid) 
 console.log(metadata.id + ', title: ' + metadata.subject + ', description: ' + metadata.desc)
 ```
 ### Join using `groupInviteMessage`
 ```ts
-const response = await suki.groupAcceptInviteV4(jid, groupInviteMessage)
+const response = await conn.groupAcceptInviteV4(jid, groupInviteMessage)
 console.log('joined to: ' + response)
 ```
 ### Get Request Join List
 ```ts
-const response = await suki.groupRequestParticipantsList(jid)
+const response = await conn.groupRequestParticipantsList(jid)
 console.log(response)
 ```
 ### Approve/Reject Request Join
 ```ts
-const response = await suki.groupRequestParticipantsUpdate(
+const response = await conn.groupRequestParticipantsUpdate(
     jid, // group id
     ['abcd@s.whatsapp.net', 'efgh@s.whatsapp.net'],
     'approve' // or 'reject' 
@@ -2431,7 +2434,7 @@ console.log(response)
 ```
 ### Get All Participating Groups Metadata
 ```ts
-const response = await suki.groupFetchAllParticipating()
+const response = await conn.groupFetchAllParticipating()
 console.log(response)
 ```
 ### Toggle Ephemeral
@@ -2446,12 +2449,12 @@ console.log(response)
 | 90d    | 7.776.000  |
 
 ```ts
-await suki.groupToggleEphemeral(jid, 86400)
+await conn.groupToggleEphemeral(jid, 86400)
 ```
 
 ### Change Add Mode
 ```ts
-await suki.groupMemberAddMode(
+await conn.groupMemberAddMode(
     jid,
     'all_member_add' // or 'admin_add'
 )
@@ -2461,48 +2464,48 @@ await suki.groupMemberAddMode(
 
 ### Block/Unblock User
 ```ts
-await suki.updateBlockStatus(jid, 'block') // Block user
-await suki.updateBlockStatus(jid, 'unblock') // Unblock user
+await conn.updateBlockStatus(jid, 'block') // Block user
+await conn.updateBlockStatus(jid, 'unblock') // Unblock user
 ```
 ### Get Privacy Settings
 ```ts
-const privacySettings = await suki.fetchPrivacySettings(true)
+const privacySettings = await conn.fetchPrivacySettings(true)
 console.log('privacy settings: ' + privacySettings)
 ```
 ### Get BlockList
 ```ts
-const response = await suki.fetchBlocklist()
+const response = await conn.fetchBlocklist()
 console.log(response)
 ```
 ### Update LastSeen Privacy
 ```ts
 const value = 'all' // 'contacts' | 'contact_blacklist' | 'none'
-await suki.updateLastSeenPrivacy(value)
+await conn.updateLastSeenPrivacy(value)
 ```
 ### Update Online Privacy
 ```ts
 const value = 'all' // 'match_last_seen'
-await suki.updateOnlinePrivacy(value)
+await conn.updateOnlinePrivacy(value)
 ```
 ### Update Profile Picture Privacy
 ```ts
 const value = 'all' // 'contacts' | 'contact_blacklist' | 'none'
-await suki.updateProfilePicturePrivacy(value)
+await conn.updateProfilePicturePrivacy(value)
 ```
 ### Update Status Privacy
 ```ts
 const value = 'all' // 'contacts' | 'contact_blacklist' | 'none'
-await suki.updateStatusPrivacy(value)
+await conn.updateStatusPrivacy(value)
 ```
 ### Update Read Receipts Privacy
 ```ts
 const value = 'all' // 'none'
-await suki.updateReadReceiptsPrivacy(value)
+await conn.updateReadReceiptsPrivacy(value)
 ```
 ### Update Groups Add Privacy
 ```ts
 const value = 'all' // 'contacts' | 'contact_blacklist'
-await suki.updateGroupsAddPrivacy(value)
+await conn.updateGroupsAddPrivacy(value)
 ```
 ### Update Default Disappearing Mode
 
@@ -2517,7 +2520,7 @@ await suki.updateGroupsAddPrivacy(value)
 
 ```ts
 const ephemeral = 86400 
-await suki.updateDefaultDisappearingMode(ephemeral)
+await conn.updateDefaultDisappearingMode(ephemeral)
 ```
 
 ## Broadcast Lists & Stories
@@ -2525,7 +2528,7 @@ await suki.updateDefaultDisappearingMode(ephemeral)
 ### Send Broadcast & Stories
 - Messages can be sent to broadcasts & stories. You need to add the following message options in sendMessage, like this:
 ```ts
-await suki.sendMessage(
+await conn.sendMessage(
     jid,
     {
         image: {
@@ -2551,7 +2554,7 @@ await suki.sendMessage(
 - Broadcast IDs are in the format `12345678@broadcast`
 ### Query a Broadcast List's Recipients & Name
 ```ts
-const bList = await suki.getBroadcastListInfo('1234@broadcast')
+const bList = await conn.getBroadcastListInfo('1234@broadcast')
 console.log (`list name: ${bList.name}, recps: ${bList.recipients}`)
 ```
 
@@ -2561,7 +2564,7 @@ Baileys is written with custom functionality in mind. Instead of forking the pro
 ### Enabling Debug Level in Baileys Logs
 First, enable the logging of unhandled messages from WhatsApp by setting:
 ```ts
-const suki = makeWASocket({
+const conn = makeWASocket({
     logger: P({ level: 'debug' }),
 })
 ```
@@ -2616,14 +2619,15 @@ The `'frame'` is what the message received is, it has three components:
 
 ```ts
 // for any message with tag 'edge_routing'
-suki.ws.on('CB:edge_routing', (node: BinaryNode) => { })
+conn.ws.on('CB:edge_routing', (node: BinaryNode) => { })
 
 // for any message with tag 'edge_routing' and id attribute = abcd
-suki.ws.on('CB:edge_routing,id:abcd', (node: BinaryNode) => { })
+conn.ws.on('CB:edge_routing,id:abcd', (node: BinaryNode) => { })
 
 // for any message with tag 'edge_routing', id attribute = abcd & first content node routing_info
-suki.ws.on('CB:edge_routing,id:abcd,routing_info', (node: BinaryNode) => { })
+conn.ws.on('CB:edge_routing,id:abcd,routing_info', (node: BinaryNode) => { })
 ```
 
 > [!NOTE]
 > Also, this repo is now licenced under GPL 3 since it uses [libsignal-node](https://git.questbook.io/backend/service-coderunner/-/merge_requests/1)
+>>>>>>> 3147aee (gtwu jir)
