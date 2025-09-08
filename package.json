@@ -1,60 +1,104 @@
 {
-"name": "chatbot-ai-gemini",
-"version": "0.1.0",
-"private": true,
-"scripts": {
-"dev": "next dev",
-"build": "next build",
-"start": "next start",
-"lint": "next lint"
-},
-"dependencies": {
-"@google/generative-ai": "^0.14.1",
-"@radix-ui/react-avatar": "^1.1.0",
-"@radix-ui/react-dialog": "^1.1.1",
-"@radix-ui/react-dropdown-menu": "^2.1.1",
-"@radix-ui/react-icons": "^1.3.0",
-"@radix-ui/react-label": "^2.1.0",
-"@radix-ui/react-scroll-area": "^1.1.0",
-"@radix-ui/react-select": "^2.1.1",
-"@radix-ui/react-separator": "^1.1.0",
-"@radix-ui/react-slot": "^1.1.0",
-"@radix-ui/react-tabs": "^1.1.0",
-"@radix-ui/react-toast": "^1.2.1",
-"@radix-ui/react-tooltip": "^1.1.2",
-"@supabase/ssr": "^0.4.0",
-"@supabase/supabase-js": "^2.44.4",
-"@tanstack/react-query": "^5.51.1",
-"ai": "^3.2.32",
-"class-variance-authority": "^0.7.0",
-"clsx": "^2.1.1",
-"lucide-react": "^0.414.0",
-"next": "14.2.5",
-"next-themes": "^0.3.0",
-"react": "^18.3.1",
-"react-dom": "^18.3.1",
-"react-hot-toast": "^2.4.1",
-"react-markdown": "^9.0.1",
-"react-syntax-highlighter": "^15.5.0",
-"react-type-animation": "^3.2.0",
-"remark-gfm": "^4.0.0",
-"tailwind-merge": "^2.4.0",
-"tailwindcss-animate": "^1.0.7",
-"uuid": "^9.0.1",
-"zustand": "^4.5.4"
-},
-"devDependencies": {
-"@tailwindcss/typography": "^0.5.13",
-"@types/node": "^20.14.10",
-"@types/react": "^18.3.3",
-"@types/react-dom": "^18.3.0",
-"@types/react-syntax-highlighter": "^15.5.13",
-"@types/uuid": "^9.0.8",
-"autoprefixer": "^10.4.19",
-"eslint": "^8.57.0",
-"eslint-config-next": "14.2.5",
-"postcss": "^8.4.39",
-"tailwindcss": "^3.4.6",
-"typescript": "^5.5.3"
-}
+  "name": "@itsukichan/baileys",
+  "version": "7.3.2",
+  "description": "WhatsApp API Modification By Itsukiichan",
+  "keywords": [
+    "whatsapp",
+    "js-whatsapp",
+    "whatsapp-api",
+    "whatsapp-web",
+    "whatsapp-chat",
+    "whatsapp-group",
+    "automation",
+    "multi-device"
+  ],
+  "homepage": "https://github.com/Itsukichann/Baileys",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Itsukichann/Baileys.git"
+  },
+  "license": "MIT",
+  "author": "Itsukichann",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib/*",
+    "WAProto/*",
+    "engine-requirements.js"
+  ],
+  "scripts": {
+    "build:all": "tsc && typedoc",
+    "build:docs": "typedoc",
+    "build:tsc": "tsc",
+    "changelog:last": "conventional-changelog -p angular -r 2",
+    "changelog:preview": "conventional-changelog -p angular -u",
+    "changelog:update": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "lint": "eslint src --ext .js,.ts",
+    "lint:fix": "yarn lint --fix",
+    "prepack": "tsc",
+    "prepare": "tsc",
+    "preinstall": "node ./engine-requirements.js",
+    "release": "release-it",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@hapi/boom": "^9.1.3",
+    "@adiwajshing/keyed-db": "^0.2.4",
+    "@cacheable/node-cache": "1.5.3", 
+    "@itsukichan/eslint-config": "^1.0.0", 
+    "@itsukichan/libsignal-node": "^1.0.1", 
+    "async-mutex": "^0.5.0",
+    "axios": "^1.6.0",
+    "audio-decode": "^2.2.2", 
+    "cache-manager": "^5.7.6", 
+    "fflate": "^0.8.2", 
+    "lodash": "^4.17.21",
+    "link-preview-js": "^3.0.14", 
+    "music-metadata": "^7.12.3",
+    "pino": "^9.6",
+    "protobufjs": "^7.2.4",
+    "qrcode-terminal": "^0.12.0", 
+    "ws": "^8.13.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.5.1",
+    "@types/node": "^16.0.0",
+    "@types/ws": "^8.0.0",
+    "conventional-changelog-cli": "^2.2.2",
+    "eslint": "^8.0.0",
+    "jest": "^27.0.6",
+    "jimp": "^0.22.12",
+    "json": "^11.0.0",
+    "link-preview-js": "^3.0.5",
+    "open": "^8.4.2",
+    "release-it": "^15.10.3",
+    "sharp": "^0.32.6",
+    "ts-jest": "^27.0.3",
+    "ts-node": "^10.8.1",
+    "typedoc": "^0.27.9",
+    "typedoc-plugin-markdown": "4.4.2",
+    "typescript": "^5.8.2"
+  },
+  "peerDependencies": {
+    "jimp": "^0.22.12",
+    "sharp": "^0.34.1"
+  },
+  "peerDependenciesMeta": {
+    "jimp": {
+      "optional": true
+    },
+    "sharp": {
+      "optional": true
+    }
+  },
+  "packageManager": "yarn@1.22.19",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "bugs": {
+    "url": "https://github.com/Itsukichann/Baileys/issues"
+  }
 }
