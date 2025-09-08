@@ -8,7 +8,6 @@
 
 <!-- Badges -->
 <p>
-  <img src="https://img.shields.io/npm/dw/%40ramacoded%2Fbaileys?label=npm&color=%23CB3837" alt="NPM Downloads"/>
   <img src="https://img.shields.io/github/v/release/ramacoded/baileys?include_prereleases&sort=semver" alt="Latest Release"/>
   <img src="https://img.shields.io/github/languages/code-size/ramacoded/baileys" alt="Code Size"/>
   <img src="https://img.shields.io/github/license/ramacoded/baileys" alt="License"/>
@@ -23,10 +22,10 @@
 
 <!-- WhatsApp Links -->
 <p>
-  <a href="https://whatsapp.com/channel/0029Vag9VSI2ZjCocqa2lB1y">
+  <a href="https://whatsapp.com/channel/0029VawXMP8LNSZzrX7FtU2d">
     <img src="https://img.shields.io/badge/WhatsApp-Channel-brightgreen" alt="WA Channel"/>
   </a>
-  <a href="https://wa.me/6285710611264">
+  <a href="https://wa.me/6283167226780">
     <img src="https://img.shields.io/badge/Owner-WA-green" alt="WA Owner"/>
   </a>
 </p>
