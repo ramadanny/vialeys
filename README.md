@@ -68,7 +68,7 @@ To run the example script, download or clone the repo and then type the followin
 
 Use the stable version:
 ```
-yarn add @baleys
+yarn add ramacoded/Baileys
 ```
 
 Use the edge version (no guarantee of stability, but latest fixes + features)
@@ -78,7 +78,7 @@ yarn add github:ramacoded/Baileys
 
 Then import your code using:
 ```ts 
-import makeWASocket from '@baleys'
+import makeWASocket from 'ramacoded/Baileys'
 ```
 
 # Links
@@ -237,7 +237,7 @@ WhatsApp provides a multi-device API that allows Baileys to be authenticated as 
 > You can customize browser name if you connect with **QR-CODE**, with `Browser` constant, we have some browsers config, **see [here](https://baileys.whiskeysockets.io/types/BrowsersMap.html)**
 
 ```ts
-import makeWASocket from '@baleys'
+import makeWASocket from 'ramacoded/Baileys'
 
 const conn = makeWASocket({
     // can provide additional config here
@@ -257,7 +257,7 @@ If the connection is successful, you will see a QR code printed on your terminal
 The phone number can't have `+` or `()` or `-`, only numbers, you must provide country code
 
 ```ts
-import makeWASocket from '@baleys'
+import makeWASocket from 'ramacoded/Baileys'
 
 const conn = makeWASocket({
     // can provide additional config here
@@ -330,7 +330,7 @@ You obviously don't want to keep scanning the QR code every time you want to con
 
 So, you can load the credentials to log back in:
 ```ts
-import makeWASocket, { useMultiFileAuthState } from '@baleys'
+import makeWASocket, { useMultiFileAuthState } from 'ramacoded/Baileys'
 
 const { state, saveCreds } = await useMultiFileAuthState('auth_info_baileys')
 
@@ -370,7 +370,7 @@ conn.ev.on('messages.upsert', ({ messages }) => {
 > This example includes basic auth storage too
 
 ```ts
-import makeWASocket, { DisconnectReason, useMultiFileAuthState } from '@baleys'
+import makeWASocket, { DisconnectReason, useMultiFileAuthState } from 'ramacoded/Baileys'
 import { Boom } from '@hapi/boom'
 
 async function connectToWhatsApp () {
@@ -411,7 +411,7 @@ connectToWhatsApp()
 
 ### For example if you use useSingleFileAuthState and useMongoFileAuthState
 ```ts
-import makeWASocket, { useSingleFileAuthState, useMongoFileAuthState } from '@baleys'
+import makeWASocket, { useSingleFileAuthState, useMongoFileAuthState } from 'ramacoded/Baileys'
 
 // Single Auth
 const { state, saveState } = await useSingleFileAuthState('./auth_info_baileys.json') 
@@ -458,7 +458,7 @@ conn.ev.on('creds.update', saveCreds)
 - By default poll votes are encrypted and handled in `messages.update`
 ```ts
 import pino from "pino"
-import { makeInMemoryStore, getAggregateVotesInPollMessage } from '@baleys'
+import { makeInMemoryStore, getAggregateVotesInPollMessage } from 'ramacoded/Baileys'
 
 const logger = pino({ timestamp: () => `,"time":"${new Date().toJSON()}"` }).child({ class: "@ramacoded" })
 logger.level = "fatal"
@@ -507,7 +507,7 @@ conn.ev.on("messages.update", async (chatUpdate) => {
 It can be used as follows:
 
 ```ts
-import makeWASocket, { makeInMemoryStore } from '@baleys'
+import makeWASocket, { makeInMemoryStore } from 'ramacoded/Baileys'
 // the store maintains the data of the WA connection in memory
 // can be written out to a file & read from it
 const store = makeInMemoryStore({ })
@@ -2068,7 +2068,7 @@ await conn.sendMessage(jid, {
 If you want to save the media you received
 ```ts
 import { createWriteStream } from 'fs'
-import { downloadMediaMessage, getContentType } from '@baleys'
+import { downloadMediaMessage, getContentType } from 'ramacoded/Baileys'
 
 conn.ev.on('messages.upsert', async ({ [m] }) => {
     if (!m.message) return // if there is no text or media message
