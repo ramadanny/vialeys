@@ -1,7 +1,7 @@
 {
-  "name": "@itsukichan/baileys",
-  "version": "7.3.2",
-  "description": "WhatsApp API Modification By Itsukiichan",
+  "name": "@ramacoded/Baileys",
+  "version": "1.1",
+  "description": "WhatsApp API Modification By RamacodeD",
   "keywords": [
     "whatsapp",
     "js-whatsapp",
@@ -12,13 +12,13 @@
     "automation",
     "multi-device"
   ],
-  "homepage": "https://github.com/Itsukichann/Baileys",
+  "homepage": "https://github.com/ramacoded/Baileys",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/Itsukichann/Baileys.git"
+    "url": "git+ssh://git@github.com/ramacoded/Baileys.git"
   },
   "license": "MIT",
-  "author": "Itsukichann",
+  "author": "ramacoded",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -54,6 +54,7 @@
     "fflate": "^0.8.2", 
     "lodash": "^4.17.21",
     "link-preview-js": "^3.0.14", 
+    "lru-cache": "^11.1.0", 
     "music-metadata": "^7.12.3",
     "pino": "^9.6",
     "protobufjs": "^7.2.4",
@@ -61,33 +62,28 @@
     "ws": "^8.13.0"
   },
   "devDependencies": {
-    "@types/jest": "^27.5.1",
+    "@types/jest": "^29.5.14",
     "@types/node": "^16.0.0",
     "@types/ws": "^8.0.0",
     "conventional-changelog-cli": "^2.2.2",
     "eslint": "^8.0.0",
-    "jest": "^27.0.6",
+    "jest": "^30.1.1",
     "jimp": "^0.22.12",
     "json": "^11.0.0",
     "link-preview-js": "^3.0.5",
     "open": "^8.4.2",
     "release-it": "^15.10.3",
-    "sharp": "^0.32.6",
-    "ts-jest": "^27.0.3",
+    "ts-jest": "^29.4.1",
     "ts-node": "^10.8.1",
     "typedoc": "^0.27.9",
     "typedoc-plugin-markdown": "4.4.2",
     "typescript": "^5.8.2"
   },
   "peerDependencies": {
-    "jimp": "^0.22.12",
-    "sharp": "^0.34.1"
+    "jimp": "^0.22.12"
   },
   "peerDependenciesMeta": {
     "jimp": {
-      "optional": true
-    },
-    "sharp": {
       "optional": true
     }
   },
@@ -99,6 +95,6 @@
     "lib": "lib"
   },
   "bugs": {
-    "url": "https://github.com/Itsukichann/Baileys/issues"
+    "url": "https://github.com/ramacoded/Baileys/issues"
   }
 }
