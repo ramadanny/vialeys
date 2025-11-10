@@ -1,39 +1,5 @@
 # <div align='center'>Baileys - Typescript/Javascript WhatsApp Web API</div>
 
-<div align="center">
-
-<img src="https://files.catbox.moe/n3rtvl.jpg" alt="Header Image" width="100%"/>
-
-<br/>
-
-<!-- Badges -->
-<p>
-  <img src="https://img.shields.io/github/v/release/ramacoded/baileys?include_prereleases&sort=semver" alt="Latest Release"/>
-  <img src="https://img.shields.io/github/languages/code-size/ramacoded/baileys" alt="Code Size"/>
-  <img src="https://img.shields.io/github/license/ramacoded/baileys" alt="License"/>
-  <img src="https://img.shields.io/github/stars/ramacoded/baileys" alt="Stars"/>
-  <img src="https://img.shields.io/github/forks/ramacoded/baileys" alt="Forks"/>
-</p>
-
-<!-- GitHub Stats -->
-<p>
-  <img src="https://github-readme-stats.vercel.app/api?username=ramacoded&show_icons=true&theme=radical" alt="GitHub Stats"/>
-</p>
-
-<!-- WhatsApp Links -->
-<p>
-  <a href="https://whatsapp.com/channel/0029VawXMP8LNSZzrX7FtU2d">
-    <img src="https://img.shields.io/badge/WhatsApp-Channel-brightgreen" alt="WA Channel"/>
-  </a>
-  <a href="https://wa.me/6283167226780">
-    <img src="https://img.shields.io/badge/Owner-WA-green" alt="WA Owner"/>
-  </a>
-</p>
-
-</div>
-
-</div>
-
 ### Important Note
 
 This library was originally a project for **CS-2362 at Ashoka University** and is in no way affiliated with or endorsed by WhatsApp. Use at your own discretion. Do not spam people with this. We discourage any stalkerware, bulk or automated messaging usage. 
@@ -66,12 +32,12 @@ To run the example script, download or clone the repo and then type the followin
 
 Use the stable version:
 ```
-yarn add github:ramacoded/Baileys
+yarn add ramacode/baileys
 ```
 
 Then import your code using:
 ```ts 
-import makeWASocket from 'ramacoded/Baileys'
+import makeWASocket from 'ramacode/baileys'
 ```
 
 # Links
@@ -230,7 +196,7 @@ WhatsApp provides a multi-device API that allows Baileys to be authenticated as 
 > You can customize browser name if you connect with **QR-CODE**, with `Browser` constant, we have some browsers config, **see [here](https://baileys.whiskeysockets.io/types/BrowsersMap.html)**
 
 ```ts
-import makeWASocket from 'ramacoded/Baileys'
+import makeWASocket from 'ramacode/baileys'
 
 const conn = makeWASocket({
     // can provide additional config here
@@ -250,7 +216,7 @@ If the connection is successful, you will see a QR code printed on your terminal
 The phone number can't have `+` or `()` or `-`, only numbers, you must provide country code
 
 ```ts
-import makeWASocket from 'ramacoded/Baileys'
+import makeWASocket from 'ramacode/baileys'
 
 const conn = makeWASocket({
     // can provide additional config here
@@ -323,7 +289,7 @@ You obviously don't want to keep scanning the QR code every time you want to con
 
 So, you can load the credentials to log back in:
 ```ts
-import makeWASocket, { useMultiFileAuthState } from 'ramacoded/Baileys'
+import makeWASocket, { useMultiFileAuthState } from 'ramacode/baileys'
 
 const { state, saveCreds } = await useMultiFileAuthState('auth_info_baileys')
 
@@ -363,7 +329,7 @@ conn.ev.on('messages.upsert', ({ messages }) => {
 > This example includes basic auth storage too
 
 ```ts
-import makeWASocket, { DisconnectReason, useMultiFileAuthState } from 'ramacoded/Baileys'
+import makeWASocket, { DisconnectReason, useMultiFileAuthState } from 'ramacode/baileys'
 import { Boom } from '@hapi/boom'
 
 async function connectToWhatsApp () {
@@ -404,7 +370,7 @@ connectToWhatsApp()
 
 ### For example if you use useSingleFileAuthState and useMongoFileAuthState
 ```ts
-import makeWASocket, { useSingleFileAuthState, useMongoFileAuthState } from 'ramacoded/Baileys'
+import makeWASocket, { useSingleFileAuthState, useMongoFileAuthState } from 'ramacode/baileys'
 
 // Single Auth
 const { state, saveState } = await useSingleFileAuthState('./auth_info_baileys.json') 
@@ -429,7 +395,7 @@ const connectAuth = async() => {
     })
 }
   await client.connect()
-  const collection = client.db("@ramacoded").collection("sessions")
+  const collection = client.db("@ramacode").collection("sessions")
   return collection
 }
 
@@ -451,9 +417,9 @@ conn.ev.on('creds.update', saveCreds)
 - By default poll votes are encrypted and handled in `messages.update`
 ```ts
 import pino from "pino"
-import { makeInMemoryStore, getAggregateVotesInPollMessage } from 'ramacoded/Baileys'
+import { makeInMemoryStore, getAggregateVotesInPollMessage } from 'ramacode/baileys'
 
-const logger = pino({ timestamp: () => `,"time":"${new Date().toJSON()}"` }).child({ class: "@ramacoded" })
+const logger = pino({ timestamp: () => `,"time":"${new Date().toJSON()}"` }).child({ class: "@ramacode" })
 logger.level = "fatal"
 const store = makeInMemoryStore({ logger })
 
@@ -463,7 +429,7 @@ async function getMessage(key){
         return msg?.message
     }
     return {
-        conversation: "ramacoded"
+        conversation: "ramacode"
     }
 } 
 
@@ -500,7 +466,7 @@ conn.ev.on("messages.update", async (chatUpdate) => {
 It can be used as follows:
 
 ```ts
-import makeWASocket, { makeInMemoryStore } from 'ramacoded/Baileys'
+import makeWASocket, { makeInMemoryStore } from 'ramacode/baileys'
 // the store maintains the data of the WA connection in memory
 // can be written out to a file & read from it
 const store = makeInMemoryStore({ })
@@ -630,7 +596,7 @@ await conn.sendMessage(
     id,
     { 
         contacts: { 
-            displayName: 'ramacoded', 
+            displayName: 'ramacode', 
             contacts: [{ vcard }] 
         }
     }
@@ -885,7 +851,7 @@ await conn.sendMessage(
     {
         stickerPack: {
             name: 'Hiii', 
-            publisher: 'By ramacoded', 
+            publisher: 'By ramacode', 
             description: 'Hello', 
             cover: Buffer, // Image buffer
             stickers: [{
@@ -1278,7 +1244,7 @@ await conn.sendMessage(
                     flow_message_version: '3', 
                     flow_token: '1:1307913409923914:293680f87029f5a13d1ec5e35e718af3',
                     flow_id: '1307913409923914',
-                    flow_cta: 'ramacoded', 
+                    flow_cta: 'ramacode', 
                     flow_action: 'navigate', 
                     flow_action_payload: {
                     	screen: 'QUESTION_ONE',
@@ -1439,7 +1405,7 @@ await conn.sendMessage(
             description: 'Description',
             currencyCode: 'IDR',
             priceAmount1000: '283xxx',
-            retailerId: 'ramacoded',
+            retailerId: 'ramacode',
             url: 'https://example.com',
             productImageCount: 1
         },
@@ -1475,8 +1441,8 @@ await conn.sendMessage(
                 payment_settings: [{ 
                    type: "pix_static_code", 
                    pix_static_code:  { 
-                      merchant_name: 'ramacoded', 
-                      key: 'example@ramacoded.com', 
+                      merchant_name: 'ramacode', 
+                      key: 'example@ramacode.com', 
                       key_type: 'EMAIL' // PHONE || EMAIL || CPF || EVP 
                    } 
                }] 
@@ -1519,7 +1485,7 @@ await conn.sendMessage(
                     order_type: 'PAYMENT_REQUEST', 
                     items: [{
                         retailer_id: 'your_retailer_id', 
-                        name: 'ramacoded', 
+                        name: 'ramacode', 
                         amount: {
                             value: '999999999', 
                             offset: '100'
@@ -1527,7 +1493,7 @@ await conn.sendMessage(
                         quantity: '1', 
                     }]
                 }, 
-                additional_note: 'ramacoded', 
+                additional_note: 'ramacode', 
                 native_payment_methods: [], 
                 share_payment_status: false
             }) 
@@ -1701,7 +1667,7 @@ await conn.sendMessage(
             description: 'Description',
             currencyCode: 'IDR',
             priceAmount1000: '283xxx',
-            retailerId: 'ramacoded',
+            retailerId: 'ramacode',
             url: 'https://example.com',
             productImageCount: 1
         },
@@ -1838,7 +1804,7 @@ await conn.sendMessage(
             description: 'Description',
             currencyCode: 'IDR',
             priceAmount1000: '283xxx',
-            retailerId: 'ramacoded',
+            retailerId: 'ramacode',
             url: 'https://example.com',
             productImageCount: 1
         },
@@ -1992,7 +1958,7 @@ await conn.sendMessage(
     { 
         album: [{
         	image: {
-        		url: 'https://example.com/ramacoded.jpg'
+        		url: 'https://example.com/ramacode.jpg'
         	}, 
         	caption: 'Hay'
         }, {
@@ -2000,7 +1966,7 @@ await conn.sendMessage(
         	caption: 'Hay'
         }, {
         	video: {
-        		url: 'https://example.com/ramacoded.mp4'
+        		url: 'https://example.com/ramacode.mp4'
         	}, 
         	caption: 'Hay'
         }, {
@@ -2060,7 +2026,7 @@ await conn.sendMessage(jid, {
 If you want to save the media you received
 ```ts
 import { createWriteStream } from 'fs'
-import { downloadMediaMessage, getContentType } from 'ramacoded/Baileys'
+import { downloadMediaMessage, getContentType } from 'ramacode/baileys'
 
 conn.ev.on('messages.upsert', async ({ [m] }) => {
     if (!m.message) return // if there is no text or media message
