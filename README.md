@@ -1,8 +1,8 @@
 # <div align='center'>Baileys - Typescript/Javascript WhatsApp Web API</div>
 
-[![npm version](https://img.shields.io/npm/v/ramacode/baileys.svg)](https://www.npmjs.com/package/ramacode/baileys)
+[![npm version](https://img.shields.io/npm/v/@ramacode/baileys.svg)](https://www.npmjs.com/package/ramacode/baileys)
 [![License](https://img.shields.io/badge/license-GPL%203-blue.svg)](LICENSE)
-[![Downloads](https://img.shields.io/npm/dm/ramacode/baileys.svg)](https://www.npmjs.com/package/ramacode/baileys)
+[![Downloads](https://img.shields.io/npm/dm/@ramacode/baileys.svg)](https://www.npmjs.com/package/ramacode/baileys)
 
 #### Liability and License Notice
 Baileys and its maintainers cannot be held liable for misuse of this application, as stated in the [MIT license](https://github.com/WhiskeySockets/Baileys/blob/master/LICENSE).
