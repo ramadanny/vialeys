@@ -1,8 +1,8 @@
 # <div align='center'>Baileys - Typescript/Javascript WhatsApp Web API</div>
 
-### Important Note
-
-This library was originally a project for **CS-2362 at Ashoka University** and is in no way affiliated with or endorsed by WhatsApp. Use at your own discretion. Do not spam people with this. We discourage any stalkerware, bulk or automated messaging usage. 
+[![npm version](https://img.shields.io/npm/v/ramacode/baileys.svg)](https://www.npmjs.com/package/ramacode/baileys)
+[![License](https://img.shields.io/badge/license-GPL%203-blue.svg)](LICENSE)
+[![Downloads](https://img.shields.io/npm/dm/ramacode/baileys.svg)](https://www.npmjs.com/package/ramacode/baileys)
 
 #### Liability and License Notice
 Baileys and its maintainers cannot be held liable for misuse of this application, as stated in the [MIT license](https://github.com/WhiskeySockets/Baileys/blob/master/LICENSE).
@@ -13,25 +13,17 @@ The maintainers of Baileys do not in any way condone the use of this application
 - Not running Selenium or Chromimum saves you like **half a gig** of ram :/ 
 - Baileys supports interacting with the multi-device & web versions of WhatsApp.
 - Thank you to [@pokearaujo](https://github.com/pokearaujo/multidevice) for writing his observations on the workings of WhatsApp Multi-Device. Also, thank you to [@Sigalor](https://github.com/sigalor/whatsapp-web-reveng) for writing his observations on the workings of WhatsApp Web and thanks to [@Rhymen](https://github.com/Rhymen/go-whatsapp/) for the __go__ implementation.
-
-> [!IMPORTANT]
-> The original repository had to be removed by the original author - we now continue development in this repository here.
-This is the only official repository and is maintained by the community.
-> **Join the Discord [here] (https://discord.gg/nqssuNjjSH)**
  
-## Example
+## 📦 Install
 
-Do check out & run [example.ts](Example/example.ts) to see an example usage of the library.
-The script covers most common use cases.
-To run the example script, download or clone the repo and then type the following in a terminal:
-1. ``` cd path/to/Baileys ```
-2. ``` yarn ```
-3. ``` yarn example ```
-
-## Install
+```bash
+npm i ramacode/baileys
+```
 
 Use the stable version:
-```
+```bash
+npm i ramacode/baileys
+# or
 yarn add ramacode/baileys
 ```
 
@@ -42,7 +34,6 @@ import makeWASocket from 'ramacode/baileys'
 
 # Links
 
-- [Discord](https://discord.gg/nqssuNjjSH)
 - [Docs](https://guide.whiskeysockets.io/)
 
 # Index
@@ -58,7 +49,6 @@ import makeWASocket from 'ramacode/baileys'
 
 - [Save Auth Info](#saving--restoring-sessions)
 - [Handling Events](#handling-events)
-    - [Example to Start](#example-to-start)
     - [Decrypt Poll Votes](#decrypt-poll-votes)
     - [Summary of Events on First Connection](#summary-of-events-on-first-connection)
 - [Implementing a Data Store](#implementing-a-data-store)
@@ -180,12 +170,9 @@ import makeWASocket from 'ramacode/baileys'
     - [How Whatsapp Communicate With Us](#how-whatsapp-communicate-with-us)
     - [Register a Callback for Websocket Events](#register-a-callback-for-websocket-events)
 
-## Connecting Account
+## 🔌 Connecting Account
 
 WhatsApp provides a multi-device API that allows Baileys to be authenticated as a second WhatsApp client by scanning a **QR code** or **Pairing Code** with WhatsApp on your phone.
-
-> [!NOTE]
-> **[Here](#example-to-start) is a simple example of event handling**
 
 > [!TIP]
 > **You can see all supported socket configs [here](https://baileys.whiskeysockets.io/types/SocketConfig.html) (Recommended)**
@@ -245,7 +232,7 @@ const conn = makeWASocket({
 })
 ```
 
-## Important Notes About Socket Config
+## 📝 Important Notes About Socket Config
 
 ### Caching Group Metadata (Recommended)
 - If you use baileys for groups, we recommend you to set `cachedGroupMetadata` in socket config, you need to implement a cache like this:
@@ -283,7 +270,7 @@ const conn = makeWASocket({
         markOnlineOnConnect: false
     })
     ```
-## Saving & Restoring Sessions
+## 💾 Saving & Restoring Sessions
 
 You obviously don't want to keep scanning the QR code every time you want to connect. 
 
@@ -307,7 +294,7 @@ conn.ev.on('creds.update', saveCreds)
 > [!NOTE]
 > When a message is received/sent, due to signal sessions needing updating, the auth keys (`authState.keys`) will update. Whenever that happens, you must save the updated keys (`authState.keys.set()` is called). Not doing so will prevent your messages from reaching the recipient & cause other unexpected consequences. The `useMultiFileAuthState` function automatically takes care of that, but for any other serious implementation -- you will need to be very careful with the key state management.
 
-## Handling Events
+##  🕹️ Handling Events
 
 - Baileys uses the EventEmitter syntax for events. 
 They're all nicely typed up, so you shouldn't have any issues with an Intellisense editor like VS Code.
@@ -456,7 +443,7 @@ conn.ev.on("messages.update", async (chatUpdate) => {
 1. When you connect first time, `connection.update` will be fired requesting you to restart sock
 2. Then, history messages will be received in `messaging.history-set`
 
-## Implementing a Data Store
+## 📊 Implementing a Data Store
 
 - Baileys does not come with a defacto storage for chats, contacts, or messages. However, a simple in-memory implementation has been provided. The store listens for chat updates, new messages, message updates, etc., to always have an up-to-date version of the data.
 
@@ -496,7 +483,7 @@ conn.ev.on('contacts.upsert', () => {
 
 The store also provides some simple functions such as `loadMessages` that utilize the store to speed up data retrieval.
 
-## Whatsapp IDs Explain
+## 🆔 Whatsapp IDs Explain
 
 - `id` is the WhatsApp ID, called `jid` too, of the person or group you're sending the message to. 
     - It must be in the format ```[country code][phone number]@s.whatsapp.net```
@@ -505,14 +492,14 @@ The store also provides some simple functions such as `loadMessages` that utiliz
     - For broadcast lists, it's `[timestamp of creation]@broadcast`.
     - For stories, the ID is `status@broadcast`.
 
-## Utility Functions
+## ⚙️ Utility Functions
 
 - `getContentType`, returns the content type for any message
 - `getDevice`, returns the device from message
 - `makeCacheableSignalKeyStore`, make auth store more fast
 - `downloadContentFromMessage`, download content from any message
 
-## Sending Messages
+## 📤 Sending Messages
 
 - Send all types of messages with a single function
     - **[Here](https://baileys.whiskeysockets.io/types/AnyMessageContent.html) you can see all message contents supported, like text message**
@@ -1118,7 +1105,7 @@ await conn.sendMessage(
            index: 1,
            urlButton: {
                 displayText: 'Follow Me', 
-                url: 'https://whatsapp.com/channel/0029Vag9VSI2ZjCocqa2lB1y'
+                url: 'https://whatsapp.com/channel/0029VbBaxOyJuyAIlMXbh82K'
              }, 
          }, 
          {
@@ -1160,15 +1147,15 @@ await conn.sendMessage(
                 name: 'cta_url',
                 buttonParamsJson: JSON.stringify({
                     display_text: 'Follow Me',
-                    url: 'https://whatsapp.com/channel/0029Vag9VSI2ZjCocqa2lB1y',
-                    merchant_url: 'https://whatsapp.com/channel/0029Vag9VSI2ZjCocqa2lB1y'
+                    url: 'https://whatsapp.com/channel/0029VbBaxOyJuyAIlMXbh82K',
+                    merchant_url: 'https://whatsapp.com/channel/0029VbBaxOyJuyAIlMXbh82K'
                 })
             },
             {
                 name: 'cta_copy',
                 buttonParamsJson: JSON.stringify({
                     display_text: 'Click Me!',
-                    copy_code: 'https://whatsapp.com/channel/0029Vag9VSI2ZjCocqa2lB1y'
+                    copy_code: 'https://whatsapp.com/channel/0029VbBaxOyJuyAIlMXbh82K'
                 })
             },
             {
@@ -1214,7 +1201,7 @@ await conn.sendMessage(
                     title: 'Follow Me!',
                     link: {
                         in_app_webview: true, // or false
-                        url: 'https://whatsapp.com/channel/0029Vag9VSI2ZjCocqa2lB1y'
+                        url: 'https://whatsapp.com/channel/0029VbBaxOyJuyAIlMXbh82K'
                     }
                 })
             },
@@ -1994,7 +1981,7 @@ await conn.sendMessage(
 )
 ```
 
-## Modify Messages
+## 🔄 Modify Messages
 
 ### Deleting Messages (for everyone)
 
@@ -2015,7 +2002,7 @@ await conn.sendMessage(jid, {
     })
 ```
 
-## Manipulating Media Messages
+## 🎭 Manipulating Media Messages
 
 ### Thumbnail in Media Messages
 - For media messages, the thumbnail can be generated automatically for images & stickers provided you add `jimp` or `sharp` as a dependency in your project using `yarn add jimp` or `yarn add sharp`.
@@ -2060,7 +2047,7 @@ conn.ev.on('messages.upsert', async ({ [m] }) => {
 await conn.updateMediaMessage(msg)
 ```
 
-## Reject Call
+## ❌ Reject Call
 
 - You can obtain `callId` and `callFrom` from `call` event
 
@@ -2068,7 +2055,7 @@ await conn.updateMediaMessage(msg)
 await conn.rejectCall(callId, callFrom)
 ```
 
-## Send States in Chat
+##  📋Send States in Chat
 
 ### Reading Messages
 - A set of message [keys](https://baileys.whiskeysockets.io/types/WAMessageKey.html) must be explicitly marked read now.
@@ -2097,7 +2084,7 @@ await conn.sendPresenceUpdate('available', jid)
 > [!NOTE]
 > If a desktop client is active, WA doesn't send push notifications to the device. If you would like to receive said notifications -- mark your Baileys client offline using `conn.sendPresenceUpdate('unavailable')`
 
-## Modifying Chats
+##  💬 Modifying Chats
 
 WA uses an encrypted form of communication to send chat/app updates. This has been implemented mostly and you can send the following updates:
 
@@ -2226,7 +2213,7 @@ await conn.sendMessage(
 await conn.clearMessage(jid, key, timestamps) 
 ```
 
-## User Querys
+## ✏️ User Querys
 
 ### Check If ID Exists in Whatsapp
 ```ts
@@ -2276,7 +2263,7 @@ conn.ev.on('presence.update', console.log)
 await conn.presenceSubscribe(jid) 
 ```
 
-## Change Profile
+## 👤 Change Profile
 
 ### Change Profile Status
 ```ts
@@ -2300,7 +2287,7 @@ await conn.updateProfilePicture(jid, { url: './new-profile-picture.jpeg' })
 await conn.removeProfilePicture(jid)
 ```
 
-## Groups
+## 👥 Groups
 
 - To change group properties you need to be admin
 
@@ -2418,7 +2405,7 @@ await conn.groupMemberAddMode(
 )
 ```
 
-## Privacy
+## 🔐 Privacy
 
 ### Block/Unblock User
 ```ts
@@ -2481,7 +2468,7 @@ const ephemeral = 86400
 await conn.updateDefaultDisappearingMode(ephemeral)
 ```
 
-## Broadcast Lists & Stories
+## 📢 Broadcast Lists & Stories
 
 ### Send Broadcast & Stories
 - Messages can be sent to broadcasts & stories. You need to add the following message options in sendMessage, like this:
@@ -2516,7 +2503,7 @@ const bList = await conn.getBroadcastListInfo('1234@broadcast')
 console.log (`list name: ${bList.name}, recps: ${bList.recipients}`)
 ```
 
-## Writing Custom Functionality
+## ✍️ Writing Custom Functionality
 Baileys is written with custom functionality in mind. Instead of forking the project & re-writing the internals, you can simply write your own extensions.
 
 ### Enabling Debug Level in Baileys Logs
@@ -2585,6 +2572,3 @@ conn.ws.on('CB:edge_routing,id:abcd', (node: BinaryNode) => { })
 // for any message with tag 'edge_routing', id attribute = abcd & first content node routing_info
 conn.ws.on('CB:edge_routing,id:abcd,routing_info', (node: BinaryNode) => { })
 ```
-
-> [!NOTE]
-> Also, this repo is now licenced under GPL 3 since it uses [libsignal-node](https://git.questbook.io/backend/service-coderunner/-/merge_requests/1)
