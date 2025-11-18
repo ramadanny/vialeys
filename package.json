@@ -1,20 +1,15 @@
 {
   "name": "@ramacode/baileys",
   "version": "1.2.1",
-  "description": "WhatsApp API Modification By ramacoded",
+  "description": "A WebSockets library for interacting with WhatsApp Web",
   "keywords": [
     "whatsapp",
-    "js-whatsapp",
-    "whatsapp-api",
-    "whatsapp-web",
-    "whatsapp-chat",
-    "whatsapp-group",
     "automation",
-    "multi-device"
+    "baileys"
   ],
-  "homepage": "https://github.com/ramacoded/Baileys",
+  "homepage": "https://www.npmjs.com/package/@ramacode/baileys",
   "bugs": {
-    "url": "https://github.com/ramacoded/Baileys/issues"
+    "url": "https://www.npmjs.com/package/@ramacode/baileys"
   },
   "repository": {
     "type": "git",
