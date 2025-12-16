@@ -1,8 +1,48 @@
 syntax = "proto3";
 package AICommon;
 
-import "../StatusAttributions/StatusAttributions.proto";
 import "../Protocol/Protocol.proto";
+import "../StatusAttributions/StatusAttributions.proto";
+
+message AIHomeState {
+    optional int64 lastFetchTime = 1;
+    repeated AIHomeOption capabilityOptions = 2;
+    repeated AIHomeOption conversationOptions = 3;
+    message AIHomeOption {
+        optional AIHomeActionType type = 1;
+        optional string title = 2;
+        optional string promptText = 3;
+        optional string sessionId = 4;
+        optional string imageWdsIdentifier = 5;
+        optional string imageTintColor = 6;
+        optional string imageBackgroundColor = 7;
+        enum AIHomeActionType {
+            PROMPT = 0;
+            CREATE_IMAGE = 1;
+            ANIMATE_PHOTO = 2;
+            ANALYZE_FILE = 3;
+        }
+    }
+}
+
+message BotDocumentMessageMetadata {
+    optional DocumentPluginType pluginType = 1;
+    enum DocumentPluginType {
+        TEXT_EXTRACTION = 0;
+        OCR_AND_IMAGES = 1;
+    }
+}
+
+message SessionTransparencyMetadata {
+    optional string disclaimerText = 1;
+    optional string hcaId = 2;
+    optional SessionTransparencyType sessionTransparencyType = 3;
+}
+
+message AIRegenerateMetadata {
+    optional Protocol.MessageKey messageKey = 1;
+    optional int64 responseTimestampMs = 2;
+}
 
 message AIRichResponseSubMessage {
     optional AIRichResponseSubMessageType messageType = 1;
@@ -134,6 +174,11 @@ message AIRichResponseImageURL {
     optional string sourceUrl = 3;
 }
 
+message BotMessageSharingInfo {
+    optional BotMetricsEntryPoint botEntryPointOrigin = 1;
+    optional uint32 forwardScore = 2;
+}
+
 message ForwardedAIBotMessageInfo {
     optional string botName = 1;
     optional string botJid = 2;
@@ -192,11 +237,48 @@ message BotFeedbackMessage {
         optional bool isSelectedResponsePrimary = 6;
         optional string messageIdToEdit = 7;
         optional SideBySideSurveyAnalyticsData analyticsData = 8;
+        optional SidebySideSurveyMetaAiAnalyticsData metaAiAnalyticsData = 9;
         message SideBySideSurveyAnalyticsData {
             optional string tessaEvent = 1;
             optional string tessaSessionFbid = 2;
+            optional string simonSessionFbid = 3;
+        }
+        message SidebySideSurveyMetaAiAnalyticsData {
+            optional uint32 surveyId = 1;
+            optional string primaryResponseId = 2;
+            optional string testArmName = 3;
+            optional string timestampMsString = 4;
+            optional SideBySideSurveyCTAImpressionEventData ctaImpressionEvent = 5;
+            optional SideBySideSurveyCTAClickEventData ctaClickEvent = 6;
+            optional SideBySideSurveyCardImpressionEventData cardImpressionEvent = 7;
+            optional SideBySideSurveyResponseEventData responseEvent = 8;
+            optional SideBySideSurveyAbandonEventData abandonEvent = 9;
+            message SideBySideSurveyAbandonEventData {
+                optional string abandonDwellTimeMsString = 1;
+            }
+            message SideBySideSurveyCTAClickEventData {
+                optional bool isSurveyExpired = 1;
+                optional string clickDwellTimeMsString = 2;
+            }
+            message SideBySideSurveyCTAImpressionEventData {
+                optional bool isSurveyExpired = 1;
+            }
+            message SideBySideSurveyCardImpressionEventData {
+            }
+            message SideBySideSurveyResponseEventData {
+                optional string responseDwellTimeMsString = 1;
+                optional string selectedResponseId = 2;
+            }
         }
     }
+}
+
+message BotGroupParticipantMetadata {
+    optional string botFbid = 1;
+}
+
+message BotGroupMetadata {
+    repeated BotGroupParticipantMetadata participantsMetadata = 1;
 }
 
 message BotMetadata {
@@ -231,6 +313,10 @@ message BotMetadata {
     optional BotMessageOriginMetadata botMessageOriginMetadata = 29;
     optional InThreadSurveyMetadata inThreadSurveyMetadata = 30;
     optional AIThreadInfo botThreadInfo = 31;
+    optional AIRegenerateMetadata regenerateMetadata = 32;
+    optional SessionTransparencyMetadata sessionTransparencyMetadata = 33;
+    optional BotDocumentMessageMetadata botDocumentMessageMetadata = 34;
+    optional BotGroupMetadata botGroupMetadata = 35;
     optional bytes internalMetadata = 999;
 }
 
@@ -260,6 +346,7 @@ message BotUnifiedResponseMutation {
     }
     message SideBySideMetadata {
         optional string primaryResponseId = 1;
+        optional bool surveyCtaHasRendered = 2;
     }
 }
 
@@ -292,6 +379,7 @@ message InThreadSurveyMetadata {
     optional string privacyStatementFull = 15;
     repeated InThreadSurveyPrivacyStatementPart privacyStatementParts = 16;
     optional string feedbackToastText = 17;
+    optional int32 startQuestionIndex = 18;
     message InThreadSurveyOption {
         optional string stringValue = 1;
         optional uint32 numericValue = 2;
@@ -331,6 +419,11 @@ message BotSourcesMetadata {
 message BotAgeCollectionMetadata {
     optional bool ageCollectionEligible = 1;
     optional bool shouldTriggerAgeCollectionOnClient = 2;
+    optional AgeCollectionType ageCollectionType = 3;
+    enum AgeCollectionType {
+        O18_BINARY = 0;
+        WAFFLE = 1;
+    }
 }
 
 message BotImagineMetadata {
@@ -414,6 +507,10 @@ message BotCapabilityMetadata {
         RICH_RESPONSE_UR_INLINE_REELS_ENABLED = 43;
         RICH_RESPONSE_UR_MEDIA_GRID_ENABLED = 44;
         RICH_RESPONSE_UR_TIMESTAMP_PLACEHOLDER = 45;
+        RICH_RESPONSE_IN_APP_SURVEY = 46;
+        AI_RESPONSE_MODEL_BRANDING = 47;
+        SESSION_TRANSPARENCY_SYSTEM_MESSAGE = 48;
+        RICH_RESPONSE_UR_REASONING = 49;
     }
 }
 
@@ -468,6 +565,7 @@ message BotProgressIndicatorMetadata {
 message BotModelMetadata {
     optional ModelType modelType = 1;
     optional PremiumModelStatus premiumModelStatus = 2;
+    optional string modelNameOverride = 3;
     enum ModelType {
         UNKNOWN_TYPE = 0;
         LLAMA_PROD = 1;
@@ -638,6 +736,11 @@ message BotAvatarMetadata {
     optional uint32 wordCount = 5;
 }
 
+enum SessionTransparencyType {
+    UNKNOWN_TYPE = 0;
+    NY_AI_SAFETY_DISCLAIMER = 1;
+}
+
 enum AIRichResponseSubMessageType {
     AI_RICH_RESPONSE_UNKNOWN = 0;
     AI_RICH_RESPONSE_GRID_IMAGE = 1;
@@ -708,6 +811,10 @@ enum BotMetricsEntryPoint {
     INVOKE_META_AI_GROUP = 30;
     META_AI_FORWARD = 31;
     NEW_CHAT_AI_CONTACT = 32;
-    MESSAGE_QUICK_ACTION = 33;
-    ATTACHMENT_TRAY = 34;
+    MESSAGE_QUICK_ACTION_1_ON_1_CHAT = 33;
+    MESSAGE_QUICK_ACTION_GROUP_CHAT = 34;
+    ATTACHMENT_TRAY_1_ON_1_CHAT = 35;
+    ATTACHMENT_TRAY_GROUP_CHAT = 36;
+    ASK_META_AI_MEDIA_VIEWER_1ON1 = 37;
+    ASK_META_AI_MEDIA_VIEWER_GROUP = 38;
 }

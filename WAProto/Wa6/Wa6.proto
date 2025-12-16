@@ -34,6 +34,8 @@ message ClientPayload {
     optional AccountType accountType = 42;
     optional sfixed32 connectionSequenceInfo = 43;
     optional bool paaLink = 44;
+    optional int32 preacksCount = 45;
+    optional int32 processingQueueSize = 46;
     enum AccountType {
         DEFAULT = 0;
         GUEST = 1;
@@ -176,6 +178,7 @@ message ClientPayload {
             TEST = 34;
             SMART_GLASSES = 35;
             BLUE_VR = 36;
+            AR_WRIST = 37;
         }
         enum ReleaseChannel {
             RELEASE = 0;

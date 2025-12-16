@@ -1,4 +1,4 @@
-# <div align='center'>Baileys - Typescript/Javascript WhatsApp Web API</div>
+# <div align='center'>Vialeys - Typescript/Javascript WhatsApp Web API</div>
 
 [![npm version](https://img.shields.io/npm/v/vialeys.svg)](https://www.npmjs.com/package/vialeys)
 [![License](https://img.shields.io/badge/license-GPL%203-blue.svg)](LICENSE)
@@ -22,11 +22,14 @@ npm i vialeys
 
 Use the stable version:
 ```bash
-npm i vialeys
-# or
+npm install vialeys
+```
+```bash
 yarn add vialeys
 ```
-
+```bash
+pnpm add vialeys
+```
 Then import your code using:
 ```ts 
 import makeWASocket from 'vialeys'
@@ -684,7 +687,7 @@ await conn.sendMessage(
     jid,
     {
         call: {
-            name: 'Hay',
+            name: 'vialeys',
             type: 1 // 2 for video
         }
     }
