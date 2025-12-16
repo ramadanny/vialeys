@@ -52,7 +52,9 @@ import makeWASocket from 'vialeys'
 
 - [Save Auth Info](#saving--restoring-sessions)
 - [Handling Events](#handling-events)
+    - [Example to Start](#example-to-start)
     - [Decrypt Poll Votes](#decrypt-poll-votes)
+    - [Decrypt Event Response](#decrypt-event-response) 
     - [Summary of Events on First Connection](#summary-of-events-on-first-connection)
 - [Implementing a Data Store](#implementing-a-data-store)
 - [Whatsapp IDs Explain](#whatsapp-ids-explain)
@@ -172,6 +174,7 @@ import makeWASocket from 'vialeys'
     - [Enabling Debug Level in Baileys Logs](#enabling-debug-level-in-baileys-logs)
     - [How Whatsapp Communicate With Us](#how-whatsapp-communicate-with-us)
     - [Register a Callback for Websocket Events](#register-a-callback-for-websocket-events)
+
 
 ## 🔌 Connecting Account
 
