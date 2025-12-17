@@ -90,6 +90,7 @@ import makeWASocket from 'vialeys'
         - [Buttons Product List Message](#buttons-product-list-message) 
         - [Buttons Cards Message](#buttons-cards-message) 
         - [Buttons Template Message](#buttons-template-message) 
+        - [Buttons Bottom Sheet Message](#buttons-bottom-sheet-message)
         - [Buttons Interactive Message](#buttons-interactive-message) 
         - [Buttons Interactive Message PIX](#buttons-interactive-message-pix) 
         - [Buttons Interactive Message PAY](#buttons-interactive-message-PAY) 
@@ -1128,6 +1129,151 @@ await conn.sendMessage(
                 id: 'id-like-buttons-message'
             }, 
        }]
+    }
+)
+```
+
+### Buttons Bottom Sheet Message
+
+> [!NOTE]
+> This wrapper allows you to send **Native Flow Bottom Sheets** easily.
+> It supports auto-detection for media headers (Image/Video/Document/Location) or Text-Only headers.
+> You can also include **Limited Time Offers** and **Context Info**.
+
+```ts
+await conn.sendMessage(
+    jid,
+    {
+        title: "Title",
+        body: "Body",
+        footer: "Footer",
+        bottomSheet: {
+            buttonTitle: "Bottom Sheet Buttons",
+            displayLimit: 1,
+            offer: {
+                text: "Offer Title",
+                url: "https://example.com",
+                copy_code: "COPY_CODE",
+                expiration_time: Date.now() + 86400000
+            },
+            buttons: [
+                {
+                    name: "quick_reply",
+                    buttonParamsJson: JSON.stringify({
+                        display_text: "Button Text",
+                        id: "id1"
+                    })
+                }
+            ]
+        }
+    }
+)
+
+// You can also add offer & contextInfo
+await conn.sendMessage(
+    jid,
+    {
+        title: "Title",
+        body: "Body",
+        footer: "Footer",
+        bottomSheet: {
+            buttonTitle: "Bottom Sheet Buttons",
+            offer: {
+                text: "Offer Title",
+                url: "[https://example.com](https://example.com)",
+                copy_code: "COPY_CODE",
+                expiration_time: Date.now() + 86400000
+            },
+            buttons: [
+                {
+                    name: "cta_url",
+                    buttonParamsJson: JSON.stringify({
+                        display_text: "Button Text",
+                        url: "[https://example.com](https://example.com)"
+                    })
+                }
+            ]
+        },
+        contextInfo: {
+            mentionedJid: ['628xxx@s.whatsapp.net'], 
+            isForwarded: true, // or false
+            forwardingScore: 999
+        }
+    }
+)
+
+// If you want to use an video
+await conn.sendMessage(
+    jid,
+    {
+        video: { url: "https://example.com/video.mp4" }, // or buffer
+        title: "Title",
+        body: "Body",
+        footer: "Footer",
+        bottomSheet: {
+            buttonTitle: "Bottom Sheet Buttons",
+            buttons: [
+                {
+                    name: "quick_reply",
+                    buttonParamsJson: JSON.stringify({
+                        display_text: "Button Text",
+                        id: "id1"
+                    })
+                }
+            ]
+        }
+    }
+)
+
+// If you want to use an document
+await conn.sendMessage(
+    jid,
+    {
+        document: { url: "https://example.com/doc.pdf" }, // or buffer
+        mimetype: "application/pdf",
+        fileName: "filename.pdf",
+        title: "Title",
+        body: "Body",
+        footer: "Footer",
+        bottomSheet: {
+            buttonTitle: "Bottom Sheet Buttons",
+            buttons: [
+                {
+                    name: "cta_url",
+                    buttonParamsJson: JSON.stringify({
+                        display_text: "Button Text",
+                        url: "https://example.com"
+                    })
+                }
+            ]
+        }
+    }
+)
+
+// If you want to use an location
+await conn.sendMessage(
+    jid,
+    {
+        location: {
+            degreesLatitude: 24.121231,
+            degreesLongitude: 55.1121221,
+            name: "Location Name"
+        },
+        title: "Title",
+        body: "Body",
+        footer: "Footer",
+        bottomSheet: {
+            buttonTitle: "Bottom Sheet Buttons",
+            buttons: [
+                {
+                    name: "cta_url",
+                    buttonParamsJson: JSON.stringify({
+                        display_text: "Button Text",
+                        url: "https://maps.google.com"
+                    })
+                }
+            ]
+        }
     }
 )
 ```
