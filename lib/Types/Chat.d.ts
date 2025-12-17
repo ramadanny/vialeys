@@ -24,39 +24,46 @@ export type WAPrivacyMessagesValue = 'all' | 'contacts'
 /** set of statuses visible to other people see updatePresence() in WhatsAppWeb.Send */
 export type WAPresence = 'unavailable' | 'available' | 'composing' | 'recording' | 'paused'
 
-export declare const ALL_WA_PATCH_NAMES: readonly ["critical_block", "critical_unblock_low", "regular_high", "regular_low", "regular"]
+export declare const ALL_WA_PATCH_NAMES: readonly [
+  'critical_block',
+  'critical_unblock_low',
+  'regular_high',
+  'regular_low',
+  'regular'
+]
 
-export type WAPatchName = typeof ALL_WA_PATCH_NAMES[number]
+export type WAPatchName = (typeof ALL_WA_PATCH_NAMES)[number]
 
 export type BotListInfo = {
-    jid: string
-    personaId: string
+  jid: string
+  personaId: string
 }
 
 export interface PresenceData {
-    lastKnownPresence: WAPresence
-    lastSeen?: number
+  lastKnownPresence: WAPresence
+  lastSeen?: number
 }
 
 export type ChatMutation = {
-    syncAction: proto.ISyncActionData
-    index: string[]
+  syncAction: proto.ISyncActionData
+  index: string[]
 }
 
 export type WAPatchCreate = {
-    syncAction: proto.ISyncActionValue
-    index: string[]
-    type: WAPatchName
-    apiVersion: number
-    operation: proto.SyncdMutation.SyncdOperation
+  syncAction: proto.ISyncActionValue
+  index: string[]
+  type: WAPatchName
+  apiVersion: number
+  operation: proto.SyncdMutation.SyncdOperation
 }
 
 export type Chat = proto.IConversation & {
-    /** unix timestamp of when the last message was received in the chat */
-    lastMessageRecvTimestamp?: number
+  /** unix timestamp of when the last message was received in the chat */
+  lastMessageRecvTimestamp?: number
 }
 
-export type ChatUpdate = Partial<Chat & {
+export type ChatUpdate = Partial<
+  Chat & {
     /**
      * if specified in the update,
      * the EV buffer will check if the condition gets fulfilled before applying the update
@@ -69,7 +76,8 @@ export type ChatUpdate = Partial<Chat & {
     conditional: (bufferedData: BufferedEventData) => boolean | undefined
     /** last update time */
     timestamp?: number
-}>
+  }
+>
 
 /**
  * the last messages in a chat, sorted reverse-chronologically. That is, the latest message should be first in the chat
@@ -77,67 +85,85 @@ export type ChatUpdate = Partial<Chat & {
  * */
 export type LastMessageList = MinimalMessage[] | proto.SyncActionValue.ISyncActionMessageRange
 
-export type ChatModification = {
-    archive: boolean
-    lastMessages: LastMessageList
-} | {
-    contact: ContactAction | null
-} | {
-    pushNameSetting: string
-} | {
-    pin: boolean
-} | {
-    /** mute for duration, or provide timestamp of mute to remove*/
-    mute: number | null
-} | {
-    clear: boolean
-} | {
-    deleteForMe: {
+export type ChatModification =
+  | {
+      archive: boolean
+      lastMessages: LastMessageList
+    }
+  | {
+      contact: ContactAction | null
+    }
+  | {
+      pushNameSetting: string
+    }
+  | {
+      pin: boolean
+    }
+  | {
+      /** mute for duration, or provide timestamp of mute to remove*/
+      mute: number | null
+    }
+  | {
+      clear: boolean
+    }
+  | {
+      deleteForMe: {
         deleteMedia: boolean
         key: WAMessageKey
         timestamp: number
+      }
     }
-} | {
-    star: {
+  | {
+      star: {
         messages: {
-            id: string
-            fromMe?: boolean
+          id: string
+          fromMe?: boolean
         }[]
         star: boolean
+      }
     }
-} | {
-    markRead: boolean
-    lastMessages: LastMessageList
-} | {
-    delete: true
-    lastMessages: LastMessageList
-} | {
-    contact: proto.SyncActionValue.IContactAction | null
-} | {
-    disableLinkPreviews: proto.SyncActionValue.IPrivacySettingDisableLinkPreviewsAction
-} | {
-    addLabel: LabelActionBody
-} | {
-    addChatLabel: ChatLabelAssociationActionBody
-} | {
-    removeChatLabel: ChatLabelAssociationActionBody
-} | {
-    addMessageLabel: MessageLabelAssociationActionBody
-} | {
-    removeMessageLabel: MessageLabelAssociationActionBody
-} | {
-    quickReply: QuickReplyAction
-}
+  | {
+      markRead: boolean
+      lastMessages: LastMessageList
+    }
+  | {
+      delete: true
+      lastMessages: LastMessageList
+    }
+  | {
+      contact: proto.SyncActionValue.IContactAction | null
+    }
+  | {
+      disableLinkPreviews: proto.SyncActionValue.IPrivacySettingDisableLinkPreviewsAction
+    }
+  | {
+      addLabel: LabelActionBody
+    }
+  | {
+      addChatLabel: ChatLabelAssociationActionBody
+    }
+  | {
+      removeChatLabel: ChatLabelAssociationActionBody
+    }
+  | {
+      addMessageLabel: MessageLabelAssociationActionBody
+    }
+  | {
+      removeMessageLabel: MessageLabelAssociationActionBody
+    }
+  | {
+      quickReply: QuickReplyAction
+    }
 
 export type InitialReceivedChatsState = {
-    [jid: string]: {
-        /** the last message received from the other party */
-        lastMsgRecvTimestamp?: number
-        /** the absolute last message in the chat */
-        lastMsgTimestamp: number
-    }
+  [jid: string]: {
+    /** the last message received from the other party */
+    lastMsgRecvTimestamp?: number
+    /** the absolute last message in the chat */
+    lastMsgTimestamp: number
+  }
 }
 
 export type InitialAppStateSyncOptions = {
-    accountSettings: AccountSettings
+  accountSettings: AccountSettings
 }

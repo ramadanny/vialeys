@@ -21,8 +21,8 @@ export type BotProfileInfo = {
 }
 
 export declare class USyncBotProfileProtocol implements USyncQueryProtocol {
-    name: string
-    getQueryElement(): BinaryNode
-    getUserElement(user: USyncUser): BinaryNode
-    parser(node: BinaryNode): BotProfileInfo | undefined
+  name: string
+  getQueryElement(): BinaryNode
+  getUserElement(user: USyncUser): BinaryNode
+  parser(node: BinaryNode): BotProfileInfo | undefined
 }

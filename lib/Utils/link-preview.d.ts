@@ -3,15 +3,15 @@ import { WAMediaUploadFunction, WAUrlInfo } from '../Types'
 import { ILogger } from './logger'
 
 export type URLGenerationOptions = {
-    thumbnailWidth: number
-    fetchOpts: {
-        /** Timeout in ms */
-        timeout: number
-        proxyUrl?: string
-        headers?: AxiosRequestConfig<{}>['headers']
-    }
-    uploadImage?: WAMediaUploadFunction
-    logger?: ILogger
+  thumbnailWidth: number
+  fetchOpts: {
+    /** Timeout in ms */
+    timeout: number
+    proxyUrl?: string
+    headers?: AxiosRequestConfig<{}>['headers']
+  }
+  uploadImage?: WAMediaUploadFunction
+  logger?: ILogger
 }
 
 /**
@@ -20,4 +20,7 @@ export type URLGenerationOptions = {
  * @param text first matched URL in text
  * @returns the URL info required to generate link preview
  */
-export declare const getUrlInfo: (text: string, opts?: URLGenerationOptions) => Promise<WAUrlInfo | undefined>
+export declare const getUrlInfo: (
+  text: string,
+  opts?: URLGenerationOptions
+) => Promise<WAUrlInfo | undefined>

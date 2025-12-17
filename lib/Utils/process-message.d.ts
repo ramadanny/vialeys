@@ -1,23 +1,32 @@
 import { AxiosRequestConfig } from 'axios'
 import { proto } from '../../WAProto'
-import { AuthenticationCreds, BaileysEventEmitter, CacheStore, SignalKeyStoreWithTransaction, SocketConfig } from '../Types'
+import {
+  AuthenticationCreds,
+  BaileysEventEmitter,
+  CacheStore,
+  SignalKeyStoreWithTransaction,
+  SocketConfig
+} from '../Types'
 import { ILogger } from './logger'
 
 type ProcessMessageContext = {
-    shouldProcessHistoryMsg: boolean
-    placeholderResendCache?: CacheStore
-    creds: AuthenticationCreds
-    keyStore: SignalKeyStoreWithTransaction
-    ev: BaileysEventEmitter
-    getMessage: SocketConfig['getMessage']
-    logger?: ILogger
-    options: AxiosRequestConfig<{}>
+  shouldProcessHistoryMsg: boolean
+  placeholderResendCache?: CacheStore
+  creds: AuthenticationCreds
+  keyStore: SignalKeyStoreWithTransaction
+  ev: BaileysEventEmitter
+  getMessage: SocketConfig['getMessage']
+  logger?: ILogger
+  options: AxiosRequestConfig<{}>
 }
 
 /** Cleans a received message to further processing */
 export declare const cleanMessage: (message: proto.IWebMessageInfo, meId: string) => void
 
-export declare const isRealMessage: (message: proto.IWebMessageInfo, meId: string) => boolean | undefined
+export declare const isRealMessage: (
+  message: proto.IWebMessageInfo,
+  meId: string
+) => boolean | undefined
 
 export declare const shouldIncrementChatUnread: (message: proto.IWebMessageInfo) => boolean
 
@@ -28,14 +37,14 @@ export declare const shouldIncrementChatUnread: (message: proto.IWebMessageInfo)
 export declare const getChatId: ({ remoteJid, participant, fromMe }: proto.IMessageKey) => string
 
 type PollContext = {
-    /** normalised jid of the person that created the poll */
-    pollCreatorJid: string
-    /** ID of the poll creation message */
-    pollMsgId: string
-    /** poll creation message enc key */
-    pollEncKey: Uint8Array
-    /** jid of the person that voted */
-    voterJid: string
+  /** normalised jid of the person that created the poll */
+  pollCreatorJid: string
+  /** ID of the poll creation message */
+  pollMsgId: string
+  /** poll creation message enc key */
+  pollEncKey: Uint8Array
+  /** jid of the person that voted */
+  voterJid: string
 }
 
 /**
@@ -44,6 +53,21 @@ type PollContext = {
  * @param ctx additional info about the poll required for decryption
  * @returns list of SHA256 options
  */
-export declare function decryptPollVote({ encPayload, encIv }: proto.Message.IPollEncValue, { pollCreatorJid, pollMsgId, pollEncKey, voterJid, }: PollContext): proto.Message.PollVoteMessage
+export declare function decryptPollVote(
+  { encPayload, encIv }: proto.Message.IPollEncValue,
+  { pollCreatorJid, pollMsgId, pollEncKey, voterJid }: PollContext
+): proto.Message.PollVoteMessage
 
-export declare const processMessage: (message: proto.IWebMessageInfo, { shouldProcessHistoryMsg, placeholderResendCache, ev, creds, keyStore, logger, options, getMessage }: ProcessMessageContext) => Promise<void>
+export declare const processMessage: (
+  message: proto.IWebMessageInfo,
+  {
+    shouldProcessHistoryMsg,
+    placeholderResendCache,
+    ev,
+    creds,
+    keyStore,
+    logger,
+    options,
+    getMessage
+  }: ProcessMessageContext
+) => Promise<void>

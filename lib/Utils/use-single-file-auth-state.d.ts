@@ -7,7 +7,10 @@ import type { AuthenticationState } from '../Types'
  *
  * DO NOT USE IN A PROD ENVIRONMENT, only meant to serve as an example
  * */
-export declare const useSingleFileAuthState: (filename: string, logger?: ILogger) => {
-    state: AuthenticationState
-    saveState: () => void
+export declare const useSingleFileAuthState: (
+  filename: string,
+  logger?: ILogger
+) => {
+  state: AuthenticationState
+  saveState: () => void
 }
