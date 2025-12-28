@@ -1135,11 +1135,6 @@ await conn.sendMessage(
 
 ### Buttons Bottom Sheet Message
 
-> [!NOTE]
-> This wrapper allows you to send **Native Flow Bottom Sheets** easily.
-> It supports auto-detection for media headers (Image/Video/Document/Location) or Text-Only headers.
-> You can also include **Limited Time Offers** and **Context Info**.
-
 ```ts
 await conn.sendMessage(
     jid,
