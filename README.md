@@ -2,17 +2,16 @@
 
 <div align="center">
 
-<img src="https://cdn.jsdelivr.net/gh/ramadanny/cdn@main/niew.jpg" alt="vialeys logo" width="100%"/>
+<img src="https://cdn.jsdelivr.net/gh/ramadanny/cdn@main/vialeys-logo.jpg" alt="vialeys logo" width="80%"/>
 
-[![npm version](https://img.shields.io/npm/v/vialeys?color=CB3837&logo=npm&logoColor=white&style=for-the-badge)](https://www.npmjs.com/package/vialeys)
-[![npm downloads](https://img.shields.io/npm/dm/vialeys?color=CB3837&logo=npm&logoColor=white&style=for-the-badge)](https://www.npmjs.com/package/vialeys)
+[![npm version](https://img.shields.io/npm/v/vialeys?color=181717&logo=npm&logoColor=white&style=for-the-badge)](https://www.npmjs.com/package/vialeys)
+[![npm downloads](https://img.shields.io/npm/dm/vialeys?color=181717&logo=npm&logoColor=white&style=for-the-badge)](https://www.npmjs.com/package/vialeys)
 [![GitHub](https://img.shields.io/github/stars/ramadanny/vialeys?color=181717&logo=github&logoColor=white&style=for-the-badge)](https://github.com/ramadanny/vialeys)
-[![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
-[![Node](https://img.shields.io/badge/node-%3E%3D20.0.0-339933?logo=node.js&logoColor=white&style=for-the-badge)](https://nodejs.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?logo=typescript&logoColor=white&style=for-the-badge)](https://typescriptlang.org)
+[![License](https://img.shields.io/badge/license-MIT-black?style=for-the-badge)](LICENSE)
+[![Node](https://img.shields.io/badge/node-%3E%3D20.0.0-181717?logo=node.js&logoColor=white&style=for-the-badge)](https://nodejs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-181717?logo=typescript&logoColor=white&style=for-the-badge)](https://typescriptlang.org)
 
-**Vialeys**
-is a fast, stable, and modern interactive-feature-focused WhatsApp Web API library built on WebSocket.
+**Vialeys** is a fast, stable, and modern interactive-feature-focused WhatsApp Web API library built on WebSocket.
 
 </div>
 

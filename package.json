@@ -74,23 +74,6 @@
         "typedoc-plugin-markdown": "4.4.2",
         "typescript": "^5.8.2"
     },
-    "prettier": {
-        "printWidth": 100,
-        "tabWidth": 4,
-        "useTabs": false,
-        "semi": false,
-        "singleQuote": true,
-        "quoteProps": "as-needed",
-        "jsxSingleQuote": false,
-        "trailingComma": "es5",
-        "bracketSpacing": true,
-        "bracketSameLine": false,
-        "arrowParens": "always",
-        "endOfLine": "lf",
-        "proseWrap": "preserve",
-        "htmlWhitespaceSensitivity": "css",
-        "embeddedLanguageFormatting": "auto"
-    },
     "peerDependencies": {
         "jimp": "^0.22.12",
         "sharp": "*"
