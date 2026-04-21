@@ -9,7 +9,6 @@
 [![GitHub](https://img.shields.io/github/stars/ramadanny/vialeys?color=181717&logo=github&logoColor=white&style=for-the-badge)](https://github.com/ramadanny/vialeys)
 [![License](https://img.shields.io/badge/license-MIT-black?style=for-the-badge)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%3E%3D20.0.0-181717?logo=node.js&logoColor=white&style=for-the-badge)](https://nodejs.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-181717?logo=typescript&logoColor=white&style=for-the-badge)](https://typescriptlang.org)
 
 **Vialeys** is a fast, stable, and modern interactive-feature-focused WhatsApp Web API library built on WebSocket.
 
