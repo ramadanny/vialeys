@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src="https://cdn.jsdelivr.net/gh/ramadanny/cdn@main/vialeys-logo.jpg" alt="vialeys logo" width="80%"/>
+<img src="https://cdn.jsdelivr.net/gh/ramadanny/cdn@main/vialeys-logo.jpg" alt="vialeys logo" width="100%"/>
 
 [![npm version](https://img.shields.io/npm/v/vialeys?color=181717&logo=npm&logoColor=white&style=for-the-badge)](https://www.npmjs.com/package/vialeys)
 [![npm downloads](https://img.shields.io/npm/dm/vialeys?color=181717&logo=npm&logoColor=white&style=for-the-badge)](https://www.npmjs.com/package/vialeys)
