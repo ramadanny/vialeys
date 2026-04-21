@@ -2446,6 +2446,3 @@ conn.ws.on('CB:edge_routing,id:abcd', (node: BinaryNode) => { })
 // for any message with tag 'edge_routing', id attribute = abcd & first content node routing_info
 conn.ws.on('CB:edge_routing,id:abcd,routing_info', (node: BinaryNode) => { })
 ```
-
-> [!NOTE]
-> Also, this repo is now licenced under GPL 3 since it uses [libsignal-node](https://git.questbook.io/backend/service-coderunner/-/merge_requests/1)
