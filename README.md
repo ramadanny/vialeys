@@ -2446,3 +2446,7 @@ conn.ws.on('CB:edge_routing,id:abcd', (node: BinaryNode) => { })
 // for any message with tag 'edge_routing', id attribute = abcd & first content node routing_info
 conn.ws.on('CB:edge_routing,id:abcd,routing_info', (node: BinaryNode) => { })
 ```
+
+<div align="center">
+  <p>© 2026 Made With Love by <b>ramadanny</b></p>
+</div>
