@@ -1,6 +1,6 @@
 {
     "name": "vialeys",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "description": "A WebSockets library for interacting with WhatsApp Web",
     "keywords": [
         "whatsapp",
@@ -75,10 +75,14 @@
         "typescript": "^5.8.2"
     },
     "peerDependencies": {
+        "better-sqlite3": "^11.0.0",
         "jimp": "^0.22.12",
         "sharp": "*"
     },
     "peerDependenciesMeta": {
+        "better-sqlite3": {
+            "optional": true
+        },
         "jimp": {
             "optional": true
         },
