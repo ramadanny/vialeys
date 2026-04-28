@@ -80,6 +80,9 @@
         "sharp": "*"
     },
     "peerDependenciesMeta": {
+        "better-sqlite3": {
+            "optional": true
+        },
         "jimp": {
             "optional": true
         }
