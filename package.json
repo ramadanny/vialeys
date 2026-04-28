@@ -85,7 +85,13 @@
         },
         "jimp": {
             "optional": true
+        },
+        "better-sqlite3": {
+            "optional": true
         }
+    },
+    "optionalDependencies": {
+        "better-sqlite3": "^11.0.0"
     },
     "engines": {
         "node": ">=20.0.0"

@@ -182,6 +182,41 @@ conn.ev.on('creds.update', saveCreds)
 > [!NOTE]
 > When a message is received/sent, due to signal sessions needing updating, the auth keys (`authState.keys`) will update. Whenever that happens, you must save the updated keys (`authState.keys.set()` is called). Not doing so will prevent your messages from reaching the recipient & cause other unexpected consequences. The `useMultiFileAuthState` function automatically takes care of that, but for any other serious implementation -- you will need to be very careful with the key state management.
 
+### SQLite Authentication State (Optional)
+
+For production environments requiring persistent session storage in a database, you can use `useSQLiteAuthState`. This feature supports both **Node.js** (with `better-sqlite3`) and **Bun runtime** (with native SQLite support).
+
+#### Installation
+
+For Node.js, install the optional dependency:
+
+```bash
+npm install better-sqlite3
+# or
+yarn add better-sqlite3
+```
+
+> [!NOTE]
+> If you're using **Bun runtime**, no additional installation is required. Bun has native SQLite support built-in.
+
+#### Usage
+
+```js
+import makeWASocket, { useSQLiteAuthState } from 'vialeys'
+
+const { state, saveCreds } = await useSQLiteAuthState('./session.db')
+
+const conn = makeWASocket({ auth: state })
+
+conn.ev.on('creds.update', saveCreds)
+```
+
+> [!TIP]
+> Running on Bun? Just use `bun run bot.js` and the library will automatically use Bun's native SQLite without needing `better-sqlite3`.
+
+> [!IMPORTANT]
+> `useSQLiteAuthState` is an **optional feature**. The library works perfectly without it using file-based authentication. Only use this if you need database-backed session storage.
+
 ## Handling Events
 
 - Baileys uses the EventEmitter syntax for events.
