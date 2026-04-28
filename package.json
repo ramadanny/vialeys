@@ -75,19 +75,17 @@
         "typescript": "^5.8.2"
     },
     "peerDependencies": {
+        "better-sqlite3": "^11.0.0",
         "jimp": "^0.22.12",
         "sharp": "*"
     },
     "peerDependenciesMeta": {
-        "jimp": {
-            "optional": true
-        },
         "better-sqlite3": {
             "optional": true
+        },
+        "jimp": {
+            "optional": true
         }
-    },
-    "optionalDependencies": {
-        "better-sqlite3": "^11.0.0"
     },
     "engines": {
         "node": ">=20.0.0"
