@@ -90,9 +90,6 @@
             "optional": true
         }
     },
-    "optionalDependencies": {
-        "better-sqlite3": "^11.0.0"
-    },
     "engines": {
         "node": ">=20.0.0"
     },
