@@ -32,6 +32,10 @@ target/
 .DS_Store
 Thumbs.db
 shell
+.gitignore
+.prettierignore
+.prettierrc.json
+LICENSE
 .env
 .env.local
 *.env.*
