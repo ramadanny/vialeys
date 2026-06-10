@@ -1,0 +1,72 @@
+name: Update WhatsApp Version
+
+on:
+  schedule:
+    # Runs automatically every Sunday at 00:00 UTC
+    - cron: '0 0 * * 0'
+  workflow_dispatch: # Allows you to manually trigger the workflow from the Actions tab
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3.6.0
+        with:
+          node-version: 20.x
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Update WhatsApp Web Version
+        id: update_version
+        run: yarn update:version
+
+      - name: Check for File Changes
+        id: check_changes
+        run: |
+          if git diff --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create Pull Request
+        if: steps.check_changes.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH_NAME="update-version/stable"
+
+          # Configure git for the bot
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Delete the branch if it already exists from a previous run
+          git push origin --delete "$BRANCH_NAME" 2>/dev/null || true
+
+          # Create a new branch, commit the JSON file, and push
+          git checkout -b "$BRANCH_NAME"
+          git add lib/Defaults/vialeys-version.json
+          git commit -m "chore: update WhatsApp Web version"
+          git push origin "$BRANCH_NAME"
+
+          # Create a Pull Request using GitHub CLI
+          gh pr create \
+            --title "chore: update WhatsApp Web version" \
+            --body "Automated WhatsApp Web version update.
+
+          This PR updates the WhatsApp Web \`client_revision\` to the latest version fetched from \`web.whatsapp.com\`.
+
+          **Updated files:**
+          - \`lib/Defaults/vialeys-version.json\`" \
+            --base main \
+            --head "$BRANCH_NAME" || echo "PR already exists or failed to create"

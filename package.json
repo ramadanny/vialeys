@@ -34,7 +34,8 @@
         "lint:fix": "yarn lint --fix",
         "preinstall": "node ./engine-requirements.js",
         "release": "release-it",
-        "test": "jest"
+        "test": "jest",
+        "update:version": "node scripts/update-version.js"
     },
     "dependencies": {
         "@hapi/boom": "^9.1.3",
