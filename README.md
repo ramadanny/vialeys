@@ -6,7 +6,8 @@
 
 [![npm version](https://img.shields.io/npm/v/vialeys?color=181717&logo=npm&logoColor=white&style=for-the-badge)](https://www.npmjs.com/package/vialeys)
 [![npm downloads](https://img.shields.io/npm/dm/vialeys?color=181717&logo=npm&logoColor=white&style=for-the-badge)](https://www.npmjs.com/package/vialeys)
-[![GitHub](https://img.shields.io/github/stars/ramadanny/vialeys?color=181717&logo=github&logoColor=white&style=for-the-badge)](https://github.com/ramadanny/vialeys)
+[![GitHub stars](https://img.shields.io/github/stars/ramadanny/vialeys?color=181717&logo=github&logoColor=white&style=for-the-badge)](https://github.com/ramadanny/vialeys)
+[![GitHub forks](https://img.shields.io/github/forks/ramadanny/vialeys?color=181717&logo=github&logoColor=white&style=for-the-badge)](https://github.com/ramadanny/vialeys)
 [![License](https://img.shields.io/badge/license-MIT-black?style=for-the-badge)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%3E%3D20.0.0-181717?logo=node.js&logoColor=white&style=for-the-badge)](https://nodejs.org)
 
