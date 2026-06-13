@@ -1,6 +1,6 @@
 {
     "name": "vialeys",
-    "version": "0.0.10",
+    "version": "0.0.11",
     "description": "A WebSockets library for interacting with WhatsApp Web",
     "keywords": [
         "whatsapp",
@@ -51,7 +51,7 @@
         "lru-cache": "^11.1.0",
         "music-metadata": "^7.12.3",
         "pino": "^9.6",
-        "p-queue": "^9.0.0",
+        "p-queue": "^6.1.1",
         "protobufjs": "^7.2.4",
         "qrcode-terminal": "^0.12.0",
         "ws": "^8.13.0"
