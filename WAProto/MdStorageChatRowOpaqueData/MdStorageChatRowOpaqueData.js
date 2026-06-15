@@ -1,4 +1,3 @@
-"use strict";
 var $protobuf = require("protobufjs/minimal");
 var $Reader = $protobuf.Reader,
     $Writer = $protobuf.Writer,
@@ -977,4 +976,4 @@ $root.MdStorageChatRowOpaqueData = (function () {
     })();
     return MdStorageChatRowOpaqueData;
 })();
-module.exports = $root;
+export default $root;

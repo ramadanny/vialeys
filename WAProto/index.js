@@ -27,4 +27,4 @@ const proto = {
     ...require("./Wa6/Wa6").Wa6,
     ...require("./Web/Web").Web,
 };
-module.exports = { proto: proto };
+export default { proto: proto };

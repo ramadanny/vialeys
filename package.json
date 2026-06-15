@@ -1,6 +1,7 @@
 {
     "name": "vialeys",
     "version": "0.0.11",
+    "type": "module",
     "description": "A WebSockets library for interacting with WhatsApp Web",
     "keywords": [
         "whatsapp",
@@ -18,6 +19,16 @@
     "license": "MIT",
     "author": "ramadanny",
     "main": "lib/index.js",
+    "exports": {
+        ".": {
+            "import": "./lib/index.js",
+            "require": "./lib/index.js"
+        },
+        "./WAProto": {
+            "import": "./WAProto/index.js",
+            "require": "./WAProto/index.js"
+        }
+    },
     "directories": {
         "lib": "lib"
     },
@@ -34,7 +45,7 @@
         "lint:fix": "yarn lint --fix",
         "preinstall": "node ./engine-requirements.js",
         "release": "release-it",
-        "test": "jest",
+        "test": "NODE_OPTIONS=--experimental-vm-modules jest",
         "update:version": "node scripts/update-version.js"
     },
     "dependencies": {

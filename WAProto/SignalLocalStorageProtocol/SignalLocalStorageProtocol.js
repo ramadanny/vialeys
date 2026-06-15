@@ -1,4 +1,3 @@
-"use strict";
 var $protobuf = require("protobufjs/minimal");
 var $Reader = $protobuf.Reader,
     $Writer = $protobuf.Writer,
@@ -3264,4 +3263,4 @@ $root.SignalLocalStorageProtocol = (function () {
     })();
     return SignalLocalStorageProtocol;
 })();
-module.exports = $root;
+export default $root;

@@ -1,4 +1,3 @@
-"use strict";
 var $protobuf = require("protobufjs/minimal");
 var $Reader = $protobuf.Reader,
     $Writer = $protobuf.Writer,
@@ -4598,4 +4597,4 @@ $root.Wa6 = (function () {
     })();
     return Wa6;
 })();
-module.exports = $root;
+export default $root;
