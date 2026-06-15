@@ -7,64 +7,33 @@ dist/
 build/
 target/
 
-# Python related
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-*.py.class
-*.so
-*.o
-*.obj
-*.a
-*.lib
-*.dll
-*.dylib
-*.exe
-*.out
-
-# Virtual environments
-venv/
-.venv/
-env/
-.env/
-
 # Logs
 *.log
-
-# Temporary files
-*.tmp
-*.temp
-*.swp
-*.swo
-
-# OS generated files
-.DS_Store
-Thumbs.db
 
 # Environment variables
 .env
 .env.local
 *.env.*
 
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
 # Coverage reports
 coverage/
 htmlcov/
 .coverage
 
-# IDE specific
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# MyPy cache
-.mypy_cache/
-
-# Pytest cache
-.pytest_cache/
-
-# Compressed files
+# Compression files
 *.zip
 *.gz
 *.tar
